@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Showcase from "./components/ServiceShowcase/Showcase.jsx";
+import Showcase from "./Components/ServiceShowcase/Showcase.jsx";
 import MarqueeBanner from "./Components/Marquee/MarqueeBanner.jsx";
 import Hero from "./Components/Hero/Hero.jsx";
 
