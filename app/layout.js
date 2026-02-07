@@ -1,14 +1,26 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import LenisProvider from "./Providers/LenisProvider";
+import Navbar from "./Components/Navbar/Navbar";
+import { Koulen, DM_Mono, Host_Grotesk } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const koulen = Koulen({
+  weight: "400",
   subsets: ["latin"],
+  variable: "--font-koulen",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const hostGrotesk = Host_Grotesk({
+  weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
+  variable: "--font-host-grotesk",
+});
+
+const dmMono = DM_Mono({
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-dm-mono",
 });
 
 export const metadata = {
@@ -19,10 +31,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="grammarly-disable-editor" content="true" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${koulen.variable} ${hostGrotesk.variable} ${dmMono.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
-        {children}
+        <Navbar />
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

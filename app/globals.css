@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --base-100: #edf1e8;
+  --base-200: #d7dbd2;
+  --base-300: #afb3ab;
+  --base-400: #969992;
+  --base-500: #7d807a;
+  --base-600: #1f1f1f;
+  --base-700: #0f0f0f;
+  --font-title-bold: 'Roslindale Display Condensed', serif;
 }
 
 @theme inline {
@@ -22,5 +28,99 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
+
+@font-face {
+  font-family: 'Roslindale Display Condensed';
+  src: url('/RoslindaleDisplayCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roslindale Display ';
+  src: url('/RoslindaleDisplayCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-title{
+  font-family: 'Roslindale Display ', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-title-bold{
+  font-family: 'Roslindale Display Condensed', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+  font-family: var(--font-title-bold), sans-serif;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(4rem, 10vw, 10rem);
+  letter-spacing: clamp(-0.15rem, -1vw, -0.25rem);
+}
+
+h2 {
+  font-size: clamp(3.25rem, 8vw, 8rem);
+  letter-spacing: clamp(-0.0125rem, -0.75vw, -0.2rem);
+}
+
+h3 {
+  font-size: clamp(2.5rem, 6.5vw, 5rem);
+  letter-spacing: clamp(-0.035rem, -0.5vw, -0.075rem);
+}
+
+h4 {
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  letter-spacing: clamp(0rem, -0.5vw, -0.075rem);
+}
+
+h5 {
+  font-size: clamp(1.25rem, 2vw, 3rem);
+  letter-spacing: clamp(0rem, -0.25vw, -0.05rem);
+}
+
+/* a,
+p,
+span {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--base-700);
+  font-family: var(--font-dm-mono), monospace;
+  font-weight: 500;
+  line-height: 1;
+}
+
+a,
+p,
+span {
+  font-size: clamp(0.8rem, 0.75vw, 0.85rem);
+}
+
+a.md,
+p.md,
+span.md {
+  font-size: clamp(1rem, 0.8vw, 1.25rem);
+}
+
+a.lg,
+p.lg,
+span.lg {
+  font-size: clamp(1.1rem, 0.85vw, 1.35rem);
+} */
