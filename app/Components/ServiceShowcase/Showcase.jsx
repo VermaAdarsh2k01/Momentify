@@ -16,16 +16,16 @@ const Showcase = () => {
   const projectNamesContainerRef = useRef(null);
 
   const projects = [
-    { name: "Human Form Study", image: "/img1.jpg" },
-    { name: "Interior Light", image: "/img2.jpg" },
-    { name: "Project 21", image: "/img3.jpg" },
-    { name: "Shadow Portraits", image: "/img4.jpg" },
-    { name: "Everyday Objects", image: "/img5.jpg" },
-    { name: "Unit 07 Care", image: "/img6.jpg" },
-    { name: "Motion Practice", image: "/img7.jpg" },
-    { name: "Noonlight Series", image: "/img8.jpg" },
-    { name: "Material Stillness", image: "/img9.jpg" },
-    { name: "Quiet Walk", image: "/img10.jpg" },
+    { name: "Baby Showers", image: "/img1.jpg" },
+    { name: "Birthday Parties", image: "/img2.jpg" },
+    { name: "Graduation Parties", image: "/img3.jpg" },
+    { name: "Wedding Receptions", image: "/img4.jpg" },
+    { name: "Corporate Events", image: "/img5.jpg" },
+    { name: "Bar Mitzvahs", image: "/img6.jpg" },
+    { name: "Quinceañeras", image: "/img7.jpg" },
+    { name: "Sweet 16s", image: "/img8.jpg" },
+    { name: "Holiday Parties", image: "/img9.jpg" },
+    { name: "Anniversary Parties", image: "/img10.jpg" },
   ];
 
   useEffect(() => {
@@ -135,7 +135,7 @@ const Showcase = () => {
   return (
     <div className="showcase-container">
       <section className="spotlight" ref={spotlightRef}>
-        <div className="project-index">
+        <div className="project-index hidden lg:block">
           <h1 ref={projectIndexRef}>01/10</h1>
         </div>
 

@@ -326,7 +326,7 @@ const Navbar = () => {
                 className="menu-main-link"
                 onClick={handleLinkClick}
               >
-                <h4 className="font-title">Index</h4>
+                <h4 className="font-title">Home</h4>
               </Link>
               <Link
                 href="/#"
