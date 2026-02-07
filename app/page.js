@@ -12,6 +12,9 @@ export default function Home() {
       {/* <AboutSection /> */}
       <Showcase/>
       <MarqueeBanner />
+      <div className="h-screen w-full bg-black">
+        Outro Space
+      </div>
     </div>
   );
 }

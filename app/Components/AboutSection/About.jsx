@@ -273,7 +273,7 @@ const   TrailContainer = () => {
     <section className="about-trail-section">
       <div ref={trailContainerRef} className="trail-container">
         <div className="background-text">
-            <Copy delay={1.5} type="slide" animateOnScroll={false}>
+            <Copy delay={0} type="slide">
                 <p className="max-w-[1000px] mx-auto text-center text-white text-4xl font-title leading-[1] lg:text-[3rem]">
                     We don't just plan events—we create moments people talk about. Whether it's an intimate celebration or a full-blown party, we bring together music, décor, logistics, and flawless execution to deliver events that feel effortless and unforgettable.
                 </p>
