@@ -26,15 +26,55 @@ const MarqueeBanner = () => {
         refreshPriority: -1,
         onUpdate: (self) => {
             const progress = self.progress;
+            const isDesktop = window.innerWidth > 1000;
+            const isTablet = window.innerWidth > 768 && window.innerWidth <= 1000;
+            const isMobile = window.innerWidth <= 768;
 
-            const marquee1X = 25 - progress * 50;
+            // Responsive marquee movement
+            let marquee1StartX, marquee1Range, marquee2StartX, marquee2Range;
+            
+            if (isDesktop) {
+                // Desktop values (original)
+                marquee1StartX = 25;
+                marquee1Range = 50;
+                marquee2StartX = -25;
+                marquee2Range = 50;
+            } else if (isTablet) {
+                // Tablet values - reduced movement
+                marquee1StartX = 15;
+                marquee1Range = 30;
+                marquee2StartX = -10;
+                marquee2Range = 30;
+            } else {
+                // Mobile values - minimal movement
+                marquee1StartX = 0;
+                marquee1Range = 80;
+                marquee2StartX = -25;
+                marquee2Range = 60;
+            }
+
+            const marquee1X = marquee1StartX - progress * marquee1Range;
             gsap.set(marquee1Ref.current, { x: `${marquee1X}%` });
 
-            const marquee2X = -15 + progress * 50;
+            const marquee2X = marquee2StartX + progress * marquee2Range;
             gsap.set(marquee2Ref.current, { x: `${marquee2X}%` });
 
-            const vinylProgress = Math.min(progress * 1.5, 1); // Double the speed, cap at 1
-            const vinylY = -vinylProgress * 90; // Move up 100% when fully in view
+            // Responsive vinyl animation
+            let vinylSpeedMultiplier, vinylYRange;
+            
+            if (isDesktop) {
+                vinylSpeedMultiplier = 1.5;
+                vinylYRange = 90;
+            } else if (isTablet) {
+                vinylSpeedMultiplier = 1.2;
+                vinylYRange = 70;
+            } else {
+                vinylSpeedMultiplier = 1.0;
+                vinylYRange = 50;
+            }
+
+            const vinylProgress = Math.min(progress * vinylSpeedMultiplier, 1);
+            const vinylY = -vinylProgress * vinylYRange;
             const vinylRotation = vinylProgress * 360;
             
             gsap.set(VinylRef.current, { 
@@ -53,18 +93,18 @@ const MarqueeBanner = () => {
       className="relative w-full h-svh p-4 flex justify-center items-center overflow-hidden 2xl:h-[100svh] bg-[#8F1B32]" 
       ref={marqueeBannerRef}
     >
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between xl:justify-center  py-8">
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between xl:justify-center py-8">
         <div 
           className="relative w-[200%] text-[--base-300] will-change-transform translate-x-[25%] 2xl:text-[8vw] text-nowrap" 
           ref={marquee1Ref}
         >
-          <p className="font-title-bold text-6xl xl:text-[10rem]">We are here for your events</p>
+          <p className="font-title-bold text-8xl xl:text-[10rem]">We are here for your events</p>
         </div>
         <div 
           className="relative w-[200%] text-[--base-300] will-change-transform -translate-x-[25%] 2xl:text-[8vw] text-nowrap" 
           ref={marquee2Ref}
         >
-          <p className="font-title-bold text-6xl xl:text-[10rem]">We are here for your events</p>
+          <p className="font-title-bold text-8xl xl:text-[10rem]">We are here for your events</p>
         </div>
       </div>
       
