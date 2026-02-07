@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Showcase from "./components/ServiceShowcase/Showcase";
-import MarqueeBanner from "./Components/Marquee/MarqueeBanner";
-import Hero from "./Components/Hero/Hero";
+import Showcase from "./components/ServiceShowcase/Showcase.jsx";
+import MarqueeBanner from "./Components/Marquee/MarqueeBanner.jsx";
+import Hero from "./Components/Hero/Hero.jsx";
 
 export default function Home() {
   return (
