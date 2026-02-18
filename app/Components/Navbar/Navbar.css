@@ -26,13 +26,10 @@
     cursor: pointer;
   }
   
-  .menu .menu-logo {
-    text-transform: uppercase;
-    /* font-family: var(--font-koulen), sans-serif; */
-    font-size: clamp(1.25rem, 2vw, 3rem);
-    line-height: 1;
-    cursor: pointer;
-    color: black;
+  .menu .menu-logo  {
+    width: 40px;
+    height: auto;
+    object-fit: contain;
   }
   
   .menu .menu-toggle {

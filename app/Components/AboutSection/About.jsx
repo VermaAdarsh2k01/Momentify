@@ -272,10 +272,24 @@ const   TrailContainer = () => {
   return (
     <section className="about-trail-section">
       <div ref={trailContainerRef} className="trail-container">
-        <div className="background-text">
+        <div className="background-text flex flex-col gap-20 lg:gap-28">
             <Copy delay={0} type="slide">
-                <p className="max-w-[1000px] mx-auto text-center text-white text-4xl font-title leading-[1] lg:text-[3rem]">
-                    We don't just plan events—we create moments people talk about. Whether it's an intimate celebration or a full-blown party, we bring together music, décor, logistics, and flawless execution to deliver events that feel effortless and unforgettable.
+                <div className="text-center">
+                    <p className="text-white text-6xl font-title leading-[1] lg:text-[6rem]">
+                    About Us
+                    </p>
+                    <div className="flex justify-center">
+                        <img 
+                            src="/highlight.svg" 
+                            alt="Highlight decoration" 
+                            className="w-40 h-auto lg:w-48 xl:w-42"
+                        />
+                    </div>
+                </div>
+            </Copy>
+            <Copy delay={0} type="slide">
+                <p className="max-w-[1000px] mx-auto text-center text-white text-xl font-body leading-[1] lg:text-[1.5rem]">
+                At Momentify, we believe every event is more than an occasion—it’s a masterpiece of emotions, culture, and memories. We are a luxury end-to-end event management company dedicated to designing extraordinary experiences that feel personal, elegant, and unforgettable.
                 </p>
             </Copy>
         </div>

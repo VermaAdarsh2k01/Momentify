@@ -1,0 +1,57 @@
+/* Additional styles for the contact button component */
+
+.contact-button-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.contact-button-hover-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-button-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contact-button-hover-effect:hover::before {
+  left: 100%;
+}
+
+/* Custom scrollbar for modal content */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Dark mode scrollbar */
+.dark .modal-content::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+.dark .modal-content::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+}
+
+.dark .modal-content::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}

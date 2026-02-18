@@ -305,7 +305,12 @@ const Navbar = () => {
   return (
     <nav className="menu" ref={menuRef}>
       <div className="menu-header" onClick={toggleMenu}>
-        <h4 className="menu-logo font-title-bold">Momentify</h4>
+        <div className="flex items-end gap-2">
+          <img src="/Logo.png" alt="Momentify" className="menu-logo" />
+          <span className="font-moglan text-black text-3xl leading-none  hidden md:block">
+            Momentify Events
+          </span>
+        </div>
         <button className="menu-toggle" aria-label="Toggle menu">
           <div className="menu-hamburger-icon" ref={hamburgerRef}>
             <span className="menu-item"></span>

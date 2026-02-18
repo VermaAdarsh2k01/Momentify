@@ -118,10 +118,6 @@ const MarqueeBanner = () => {
         <div className="absolute -bottom-[10rem] xl:-bottom-[20rem] w-full flex justify-center items-center">
           <img src="/Vinyl.png" alt="" ref={VinylRef} className="w-full xl:w-[80%] h-full object-cover"/>
         </div>
-        
-        {/* <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-[--base-100]">
-          <h5>Nrmlss</h5>
-        </div> */}
       </div>
     </section>
   );
