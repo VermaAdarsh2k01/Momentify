@@ -74,35 +74,35 @@ const ContactSectionNew = () => {
 
           {/* Contact Form */}
           <Copy delay={0.4} type="slide">
-            <div className="bg-white bg-opacity-5 rounded-2xl p-8 backdrop-blur-sm">
+            <div className="bg-black border-2 border-white bg-opacity-5 rounded-2xl p-8 backdrop-blur-sm">
               <h3 className="text-white font-title text-2xl mb-6">Send Us a Message</h3>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     type="text"
                     placeholder="First Name"
-                    className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
+                    className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
                   />
                   <input
                     type="text"
                     placeholder="Last Name"
-                    className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
+                    className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
                   />
                 </div>
                 <input
                   type="email"
                   placeholder="Email Address"
-                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
                 />
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
+                  className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
                 />
                 <textarea
                   rows={4}
                   placeholder="Tell us about your event..."
-                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200 resize-none"
                 ></textarea>
                 <button
                   type="submit"

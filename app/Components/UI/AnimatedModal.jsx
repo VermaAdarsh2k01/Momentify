@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
@@ -38,7 +39,7 @@ export const ModalTrigger = ({ children, className }) => {
   return (
     <button
       className={cn(
-        "px-4 py-2 rounded-md text-black dark:text-white text-center relative overflow-hidden",
+        " rounded-md text-black dark:text-white text-center relative overflow-hidden",
         className
       )}
       onClick={() => setOpen(true)}
@@ -50,6 +51,12 @@ export const ModalTrigger = ({ children, className }) => {
 
 export const ModalBody = ({ children, className }) => {
   const { open, setOpen } = useModal();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -60,11 +67,12 @@ export const ModalBody = ({ children, className }) => {
   }, [open]);
 
   const modalRef = useRef(null);
-  const { current: modalContainer } = modalRef;
 
   useOutsideClick(modalRef, () => setOpen(false));
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -79,14 +87,15 @@ export const ModalBody = ({ children, className }) => {
             opacity: 0,
             backdropFilter: "blur(0px)",
           }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full flex items-center justify-center z-50"
+          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-screen w-screen flex items-center justify-center md:p-4 z-[9999]"
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              "w-full h-full md:min-h-[50%] md:max-h-[90%] md:max-w-[40%] md:w-auto md:h-auto bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col overflow-hidden",
               className
             )}
             initial={{
@@ -117,13 +126,14 @@ export const ModalBody = ({ children, className }) => {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
 export const ModalContent = ({ children, className }) => {
   return (
-    <div className={cn("flex flex-col flex-1 p-8 md:p-10", className)}>
+    <div className={cn("flex flex-col flex-1 p-6 md:p-8 lg:p-10", className)}>
       {children}
     </div>
   );
@@ -156,7 +166,8 @@ const Overlay = ({ className }) => {
         opacity: 0,
         backdropFilter: "blur(0px)",
       }}
-      className={`fixed inset-0 h-full w-full bg-black/50 z-50 ${className}`}
+      className={`fixed inset-0 h-screen w-screen bg-black/50 z-40 ${className}`}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     ></motion.div>
   );
 };

@@ -52,65 +52,76 @@ const ContactButton = ({
   const getButtonClasses = () => {
     const baseClasses = `
       relative inline-flex items-center justify-between gap-4 px-8 py-4 
-      rounded-full font-body font-medium text-lg transition-all duration-300 
+      rounded-full font-body font-medium text-lg 
       overflow-hidden group cursor-pointer border-2 uppercase tracking-wide
     `;
 
     switch (variant) {
       case "secondary":
-        return `${baseClasses} bg-white text-black border-black hover:bg-black hover:text-white`;
+        return `${baseClasses} bg-white text-black border-black`;
       case "outline":
-        return `${baseClasses} bg-transparent text-black border-black hover:bg-black hover:text-white`;
+        return `${baseClasses} bg-transparent text-black border-black`;
       default: // primary
-        return `${baseClasses} bg-black text-white border-black hover:bg-white hover:text-black`;
+        return `${baseClasses} bg-black text-white border-black`;
     }
   };
 
   return (
     <Modal>
-      <ModalTrigger className={`${getButtonClasses()} ${className}`}>
+      <ModalTrigger asChild>
         <motion.div 
-          className="flex items-center justify-between w-full"
-          whileHover={{ scale: 1.02 }}
+          className={`${getButtonClasses()} ${className}`}
+          initial={{
+            backgroundColor: variant === "primary" ? "#000000" : variant === "secondary" ? "#ffffff" : "transparent",
+            color: variant === "primary" ? "#ffffff" : "#000000"
+          }}
+          whileHover={{ 
+            scale: 1.02,
+            backgroundColor: variant === "primary" ? "#ffffff" : "#000000",
+            color: variant === "primary" ? "#000000" : "#ffffff"
+          }}
           whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.3 }}
         >
-          <span className="relative z-10">{buttonText}</span>
-          
-          {/* Arrow Icon */}
-          <motion.div
-            className="relative z-10 w-8 h-8 rounded-full bg-current flex items-center justify-center"
-            style={{
-              backgroundColor: variant === "primary" ? "white" : "black",
-              color: variant === "primary" ? "black" : "white",
-            }}
-            whileHover={{ 
-              rotate: 45,
-              backgroundColor: variant === "primary" ? "black" : "white",
-              color: variant === "primary" ? "white" : "black",
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <div className="flex items-center justify-between gap-4 w-full"          >
+            <span className="relative z-10">{buttonText}</span>
+            
+            {/* Arrow Icon */}
+            <motion.div
+              className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center"
+              initial={{
+                backgroundColor: variant === "primary" ? "white" : "black",
+                color: variant === "primary" ? "black" : "white",
+              }}
+              whileHover={{ 
+                rotate: 45,
+                backgroundColor: variant === "primary" ? "black" : "white",
+                color: variant === "primary" ? "white" : "black",
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7,7 17,7 17,17" />
-            </svg>
-          </motion.div>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7,7 17,7 17,17" />
+              </svg>
+            </motion.div>
+          </div>
+          
+          {/* Background animation */}
+          <motion.div
+            className="absolute inset-0 bg-current opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+            initial={false}
+          />
         </motion.div>
-        
-        {/* Background animation */}
-        <motion.div
-          className="absolute inset-0 bg-current opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-          initial={false}
-        />
       </ModalTrigger>
 
       <ModalBody>

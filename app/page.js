@@ -28,7 +28,7 @@ export default function Home() {
       <Testimonials />
       <CTABanner />
       <FAQ />
-      <ContactSectionNew />
+      {/* <ContactSectionNew /> */}
       <ContactSection />
     </div>
   );

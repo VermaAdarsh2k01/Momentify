@@ -78,7 +78,7 @@ const Hero = () => {
         <div className='relative w-full h-full bg-white overflow-hidden' style={{ borderRadius: '0%' }} ref={videoContainer}>
             <video src="/hero_vid.mp4" autoPlay muted loop className='w-full h-full object-cover' />
 
-            <div className=' w-full xl:w-[40%] rounded-4xl h-fit p-6 absolute bottom-30 left-1/2 transform max-[1000px]:-translate-x-1/2 xl:bottom-4 xl:left-4' ref={textContainer}>
+            <div className=' w-full xl:w-[40%] rounded-4xl h-fit p-6 absolute bottom-44 left-1/2 transform text-center lg:text-left max-[1000px]:-translate-x-1/2 xl:bottom-4 xl:left-4' ref={textContainer}>
                 <div className='w-full h-full'>
                     <Copy delay={1.5} type='slide' animateOnScroll={false}>
                         <p className='font-title text-4xl xl:text-7xl text-white opacity-0 '>Live the Events that you have always dreamed of</p>
@@ -86,9 +86,9 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className='w-full xl:w-[40%] h-fit p-6 absolute bottom-30 right-1/2 transform max-[1000px]:-translate-x-1/2 xl:bottom-4 xl:right-4 flex flex-col gap-6' ref={contactButtonContainer}>
-                <p className='font-title text-white xl:text-5xl '>Experience for people who are looking for the best</p>
-                <ContactButton className='w-fit'/>
+            <div className='w-full xl:w-[40%] h-fit p-6 absolute bottom-24 left-1/2 transform max-[1000px]:-translate-x-1/2 xl:bottom-4 xl:right-4 flex flex-col lg:items-start items-center gap-6' ref={contactButtonContainer}>
+                <p className='font-title text-white xl:text-5xl hidden lg:block '>Experience for people who are looking for the best</p>
+                <ContactButton className='w-fit' buttonText='Contact Us'/>
             </div>
         </div>
 
