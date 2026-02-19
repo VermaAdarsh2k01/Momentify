@@ -328,28 +328,28 @@ const Navbar = () => {
             <div className="menu-main-links">
               <Link
                 href="/"
-                className="menu-main-link"
+                className="menu-main-link lg:text-7xl"
                 onClick={handleLinkClick}
               >
                 <h4 className="font-title">Home</h4>
               </Link>
               <Link
-                href="/#"
-                className="menu-main-link"
+                href="/services"
+                className="menu-main-link lg:text-7xl"
                 onClick={handleLinkClick}
               >
                 <h4 className="font-title">Services</h4>
               </Link>
               <Link
                 href="/#"
-                className="menu-main-link"
+                className="menu-main-link lg:text-7xl"
                 onClick={handleLinkClick}
               >
                 <h4 className="font-title">About</h4>
               </Link>
               <Link
-                href="/#"
-                className="menu-main-link"
+                href="/contact"
+                className="menu-main-link lg:text-7xl"
                 onClick={handleLinkClick}
               >
                 <h4 className="font-title">Contact</h4>

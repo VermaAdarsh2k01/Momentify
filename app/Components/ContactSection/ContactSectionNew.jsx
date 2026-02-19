@@ -1,14 +1,117 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Copy from "../TextAnimation/Copy";
 
 const ContactSectionNew = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // First Name validation (REQUIRED)
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required";
+    }
+
+    // Last Name validation (OPTIONAL - no validation needed)
+
+    // Email validation (REQUIRED)
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone validation (REQUIRED)
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!validatePhone(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    // Message validation (OPTIONAL - only validate if provided)
+    if (formData.message.trim() && formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters long";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // Here you would typically send the form data to your backend
+      console.log("Form submitted:", formData);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Reset form on successful submission
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+      
+      alert("Thank you! Your message has been sent successfully.");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Sorry, there was an error sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section className="bg-black min-h-screen flex items-center py-20 lg:py-32">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 w-full">
         <Copy delay={0} type="slide">
           <div className="text-center mb-16 lg:mb-24">
-            <h2 className="text-white text-5xl lg:text-7xl xl:text-8xl font-title leading-[1] mb-6">
+            <h2 className="text-white text-5xl lg:text-7xl xl:text-8xl font-title leading-[1] mb-2">
               Contact
             </h2>
             <div className="flex justify-center mb-8">
@@ -76,39 +179,108 @@ const ContactSectionNew = () => {
           <Copy delay={0.4} type="slide">
             <div className="bg-black border-2 border-white bg-opacity-5 rounded-2xl p-8 backdrop-blur-sm">
               <h3 className="text-white font-title text-2xl mb-6">Send Us a Message</h3>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
-                  />
+                  <div>
+                    <input
+                      type="text"
+                      name="firstName"
+                      placeholder="First Name"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-black bg-opacity-10 border rounded-lg text-white placeholder-gray-300 font-body focus:outline-none transition-all duration-200 ${
+                        errors.firstName 
+                          ? 'border-red-500 border-opacity-70 focus:border-red-400' 
+                          : 'border-white border-opacity-20 focus:border-opacity-50'
+                      }`}
+                    />
+                    {errors.firstName && (
+                      <p className="text-red-400 text-sm mt-1 font-body">{errors.firstName}</p>
+                    )}
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="lastName"
+                      placeholder="Last Name"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-black bg-opacity-10 border rounded-lg text-white placeholder-gray-300 font-body focus:outline-none transition-all duration-200 ${
+                        errors.lastName 
+                          ? 'border-red-500 border-opacity-70 focus:border-red-400' 
+                          : 'border-white border-opacity-20 focus:border-opacity-50'
+                      }`}
+                    />
+                    {errors.lastName && (
+                      <p className="text-red-400 text-sm mt-1 font-body">{errors.lastName}</p>
+                    )}
+                  </div>
                 </div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
-                />
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200"
-                />
-                <textarea
-                  rows={4}
-                  placeholder="Tell us about your event..."
-                  className="w-full px-4 py-3 bg-black bg-opacity-10 border border-white border-opacity-20 rounded-lg text-white placeholder-gray-300 font-body focus:outline-none focus:border-opacity-50 transition-all duration-200 resize-none"
-                ></textarea>
+                
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 bg-black bg-opacity-10 border rounded-lg text-white placeholder-gray-300 font-body focus:outline-none transition-all duration-200 ${
+                      errors.email 
+                        ? 'border-red-500 border-opacity-70 focus:border-red-400' 
+                        : 'border-white border-opacity-20 focus:border-opacity-50'
+                    }`}
+                  />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1 font-body">{errors.email}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 bg-black bg-opacity-10 border rounded-lg text-white placeholder-gray-300 font-body focus:outline-none transition-all duration-200 ${
+                      errors.phone 
+                        ? 'border-red-500 border-opacity-70 focus:border-red-400' 
+                        : 'border-white border-opacity-20 focus:border-opacity-50'
+                    }`}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-400 text-sm mt-1 font-body">{errors.phone}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <textarea
+                    rows={4}
+                    name="message"
+                    placeholder="Tell us about your event..."
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-3 bg-black bg-opacity-10 border rounded-lg text-white placeholder-gray-300 font-body focus:outline-none transition-all duration-200 resize-none ${
+                      errors.message 
+                        ? 'border-red-500 border-opacity-70 focus:border-red-400' 
+                        : 'border-white border-opacity-20 focus:border-opacity-50'
+                    }`}
+                  ></textarea>
+                  {errors.message && (
+                    <p className="text-red-400 text-sm mt-1 font-body">{errors.message}</p>
+                  )}
+                </div>
+                
                 <button
                   type="submit"
-                  className="w-full bg-white text-black px-6 py-4 rounded-lg font-title text-lg hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105"
+                  disabled={isSubmitting}
+                  className={`w-full px-6 py-4 rounded-lg font-title text-lg transition-all duration-300 transform ${
+                    isSubmitting
+                      ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                      : 'bg-white text-black '
+                  }`}
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
