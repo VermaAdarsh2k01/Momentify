@@ -2,8 +2,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import Link from "next/link";
+import CardFlip from "@/components/kokonutui/card-flip";
+import ContactSection from "@/app/Components/ContactSection/ContactSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,39 +50,80 @@ const ServicesContent = () => {
   const portfolioItems = [
     {
       id: 1,
-      title: "Annual Sales Conference",
-      client: "XYZ Corporate",
-      description: "A comprehensive corporate event featuring keynote speakers, networking sessions, and product launches. We managed everything from venue selection to post-event analytics.",
-      image: "/api/placeholder/400/300",
-      category: "Corporate Events",
-      link: "#"
+      title: "Wedding Events",
+      subtitle: "Dream Wedding Planning",
+      description: "Create your perfect wedding day with our comprehensive planning services. From intimate ceremonies to grand celebrations, we handle every detail to make your special day unforgettable.",
+      features: ["Wedding ceremony", "Pre/Post Wedding Rituals", "Engagement", "Sangeet", "Dance preparation", "Full Baraat preparation"],
+      category: "Wedding",
+      link: "#",
+      mediaUrl: "/services/wedding.jpg",
+      mediaType: "image"
     },
     {
       id: 2,
-      title: "Elegant Garden Wedding",
-      client: "John and Emily Smith",
-      description: "An enchanting outdoor wedding celebration with custom floral arrangements, live entertainment, and gourmet catering in a picturesque garden setting.",
-      image: "/api/placeholder/400/300",
-      category: "Weddings",
-      link: "#"
+      title: "Corporate Events",
+      subtitle: "Professional Event Management",
+      description: "Elevate your business events with our corporate planning expertise. From conferences to product launches, we ensure your professional gatherings leave a lasting impression.",
+      features: ["Team events", "Corporate Parties"],
+      category: "Corporate",
+      link: "#",
+      mediaUrl: "/services/corporate.jpg",
+      mediaType: "image"
     },
     {
       id: 3,
-      title: "Multi-Day Family Reunion",
-      client: "Smith Family Reunion",
-      description: "A memorable three-day family gathering featuring activities for all ages, catered meals, and professional photography to capture precious moments.",
-      image: "/api/placeholder/400/300",
-      category: "Family Events",
-      link: "#"
+      title: "Social Events",
+      subtitle: "Social Gathering Excellence",
+      description: "Transform your social events into memorable experiences. Whether it's a birthday party, anniversary, or casual gathering, we bring your vision to life.",
+      features: ["Graduation party", "Proms Event", "The No-Reason party"],
+      category: "Social",
+      link: "#",
+      mediaUrl: "/services/social.jpg",
+      mediaType: "image"
     },
     {
       id: 4,
-      title: "Product Launch Campaign",
-      client: "ABC Cosmetics",
-      description: "An exclusive product launch event with influencer partnerships, media coverage, and immersive brand experiences that generated significant buzz.",
-      image: "/api/placeholder/400/300",
-      category: "Product Launches",
-      link: "#"
+      title: "Cultural Events",
+      subtitle: "Honoring Traditions",
+      description: "Celebrate your cultural and religious milestones with respect and authenticity. We understand the importance of tradition and create meaningful ceremonies.",
+      features: ["Mundan Ceremony", "Housewarming", "Festivals & Community Celebrations", "Prayer Meetings & Spiritual Gatherings", "Milestone Religious Ceremonies", "Custom Rituals & Traditions", "Quinceanera"],
+      category: "Cultural & Religious",
+      link: "#",
+      mediaUrl: "/services/cultural.jpg",
+      mediaType: "image"
+    },
+    {
+      id: 5,
+      title: "Celebrations of Life",
+      subtitle: "Meaningful Tributes",
+      description: "Honor and celebrate the life of your loved ones with dignity and grace. We help create meaningful gatherings that celebrate memories and bring comfort.",
+      features: ["Baby Shower", "Birthday Parties", "Anniversaries", "Marriage Proposal", "Personalized Love Proposals", "Surprise Party", "Gender Reveal"],
+      category: "Celebrations of Life",
+      link: "#",
+      mediaUrl: "/services/babyshower.jpg",
+      mediaType: "image"
+    },
+    {
+      id: 6,
+      title: "Holiday Parties",
+      subtitle: "Festive Event Planning",
+      description: "Make your holiday celebrations magical with our festive event planning. From intimate family gatherings to large corporate holiday parties.",
+      features: [],
+      category: "Holiday Parties",
+      link: "#",
+      mediaUrl: "/services/holiday.jpg",
+      mediaType: "image"
+    },
+    {
+      id: 7,
+      title: "Music/DJ/Dance",
+      subtitle: "Entertainment & Music Services",
+      description: "Bring energy and excitement to your events with our music and entertainment services. Professional DJs, live music, and dance entertainment.",
+      features: ["Hollywood/Bollywood/Tollywood/Punjabi/Regional", "Dhol", "Special Occasion Dance performances", "DJ"],
+      category: "Music/DJ/Dance",
+      link: "#",
+      mediaUrl: "/services/music.jpg",
+      mediaType: "image"
     }
   ];
 
@@ -115,49 +156,22 @@ const ServicesContent = () => {
 
   return (
     <>
-      {/* Portfolio Section */}
+      {/* Services Section */}
       <section className="py-20 bg-white" ref={portfolioRef}>
         <div className="max-w-6xl mx-auto px-5">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#2c2c2c] mb-4 tracking-tight">Our Portfolio</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover our recent work and the exceptional events we've brought to life
-            </p>
-          </div>
 
-          <div className="flex flex-col gap-16">
-            {portfolioItems.map((item, index) => (
-              <div
-                key={item.id}
-                className={`portfolio-card grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center bg-white rounded-3xl p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
-                  index % 2 === 1 ? 'lg:grid-flow-dense' : ''
-                }`}
-              >
-                <div className={`relative rounded-2xl overflow-hidden aspect-[4/3] ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                  <div className="absolute top-5 right-5">
-                    <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold text-gray-800">
-                      {item.category}
-                    </span>
-                  </div>
-                </div>
-                <div className={`space-y-4 ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-[#2c2c2c] leading-tight">{item.title}</h3>
-                  <p className="text-base font-semibold text-[#d4af37]">Client: {item.client}</p>
-                  <p className="text-base text-gray-600 leading-relaxed">{item.description}</p>
-                  <Link 
-                    href={item.link} 
-                    className="inline-flex items-center text-base font-semibold text-[#d4af37] hover:text-[#b8941f] transition-all duration-300 hover:translate-x-1"
-                  >
-                    Read More →
-                  </Link>
-                </div>
+          <div className="grid grid-cols-1 gap-6 lg:gap-8">
+            {portfolioItems.map((item) => (
+              <div key={item.id} className="portfolio-card flex justify-center">
+                <CardFlip
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  description={item.description}
+                  features={item.features}
+                  mediaUrl={item.mediaUrl}
+                  mediaType={item.mediaType}
+                  scale={false}
+                />
               </div>
             ))}
           </div>
@@ -165,7 +179,7 @@ const ServicesContent = () => {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-20 bg-[#faf9f6]" ref={highlightsRef}>
+      {/* <section className="py-20 bg-[#faf9f6]" ref={highlightsRef}>
         <div className="max-w-6xl mx-auto px-5">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-[#2c2c2c] mb-4 tracking-tight">Highlights That Define Excellence</h2>
@@ -174,7 +188,7 @@ const ServicesContent = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-10">
+          <div className="grid grid-cols-1 gap-6 lg:gap-8 mt-10">
             {highlights.map((highlight) => (
               <div 
                 key={highlight.id} 
@@ -186,7 +200,7 @@ const ServicesContent = () => {
                     alt={highlight.title}
                     width={120}
                     height={120}
-                    className="w-28 h-28 lg:w-32 lg:h-32 rounded-xl object-cover mx-auto"
+                    className="w-28 h-36 lg:w-32 lg:h-32 rounded-xl object-cover mx-auto"
                   />
                 </div>
                 <div className="space-y-2">
@@ -197,27 +211,12 @@ const ServicesContent = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#2c2c2c] to-[#1a1a1a] text-center">
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="max-w-2xl mx-auto space-y-6">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">Ready to Create Your Perfect Event?</h2>
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-              Let's discuss how we can bring your vision to life with our comprehensive event planning services.
-            </p>
-            <Link 
-              href="/contact" 
-              className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl"
-            >
-              Get Started Today
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ContactSection/>
     </>
   );
-};
+}
 
 export default ServicesContent;

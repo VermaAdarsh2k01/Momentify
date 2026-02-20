@@ -3,6 +3,7 @@ import "./globals.css";
 import LenisProvider from "./Providers/LenisProvider";
 import Navbar from "./Components/Navbar/Navbar";
 import { Koulen, DM_Mono, Host_Grotesk } from "next/font/google";
+import { Provider } from "../components/ui/provider";
 
 const koulen = Koulen({
   weight: "400",
@@ -32,15 +33,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta name="grammarly-disable-editor" content="true" />
+        <meta name="grammarly-disable-editor" content="true" suppressHydrationWarning/>
       </head>
       <body
         className={`${koulen.variable} ${hostGrotesk.variable} ${dmMono.variable} antialiased`}
-        suppressHydrationWarning={true}
       >
         <Navbar />
         <LenisProvider>
-          {children}
+           {children}
         </LenisProvider>
       </body>
     </html>

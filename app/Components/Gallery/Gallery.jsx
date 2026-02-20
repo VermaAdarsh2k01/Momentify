@@ -31,7 +31,7 @@ const Gallery = () => {
     : galleryImages.filter(img => img.category === selectedGalleryCategory);
 
   return (
-    <section className="bg-black min-h-screen flex items-center py-20 lg:py-32">
+    <section className="bg-[#8F1B32] min-h-screen flex items-center py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <Copy delay={0} type="slide">
           <div className="text-center mb-16 lg:mb-24">

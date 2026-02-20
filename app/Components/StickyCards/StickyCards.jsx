@@ -13,82 +13,82 @@ const StickyCards = () => {
   const cardData = [
     {
       id: 'card-1',
-      subtitle: 'Quiet Control',
-      title: 'Baby Showers',
-      image: '/service-section/baby-shower.png',
-      bgColor: 'bg-[#3d2fa9]',
-      zIndex: 'z-50'
-    },
-    {
-      id: 'card-2',
-      subtitle: 'Fluid Structures',
-      title: 'Birthday Parties',
-      image: '/service-section/birthday.png',
-      bgColor: 'bg-[#ff7722]',
-      zIndex: 'z-40'
-    },
-    {
-      id: 'card-3',
-      subtitle: 'Wired Thought',
-      title: 'Graduation Parties',
-      image: '/service-section/grad.png',
-      bgColor: 'bg-[#ff3d33]',
-      zIndex: 'z-30'
-    },
-    {
-      id: 'card-4',
       subtitle: 'Silent Repetition',
       title: 'Wedding Receptions',
       image: '/service-section/wedding.png',
       bgColor: 'bg-[#785f47]',
+      zIndex: 'z-50'
+    },
+    {
+      id: 'card-2',
+      subtitle: 'Silent Repetition',
+      title: 'Festive Parties',
+      image: '/service-section/festive.png',
+      bgColor: 'bg-[#7c3aed]',
+      zIndex: 'z-40'
+    },
+    {
+      id: 'card-3',
+      subtitle: 'Silent Repetition',
+      title: 'Anniversary Parties',
+      image: '/service-section/anniversary.png',
+      bgColor: 'bg-[#0891b2]',
+      zIndex: 'z-30'
+    },
+    {
+      id: 'card-4',
+      subtitle: 'Fluid Structures',
+      title: 'Birthday Parties',
+      image: '/service-section/birthday.png',
+      bgColor: 'bg-[#ff7722]',
       zIndex: 'z-20'
     },
     {
       id: 'card-5',
-      subtitle: 'Silent Repetition',
-      title: 'Corporate Events',
-      image: '/service-section/corporate.png',
-      bgColor: 'bg-[#2563eb]',
+      subtitle: 'Quiet Control',
+      title: 'Baby Showers',
+      image: '/service-section/baby-shower.png',
+      bgColor: 'bg-[#3d2fa9]',
       zIndex: 'z-10'
     },
     {
       id: 'card-6',
-      subtitle: 'Silent Repetition',
-      title: 'Bar Mitzvahs',
-      image: '/service-section/barmitzvah.png',
-      bgColor: 'bg-[#059669]',
+      subtitle: 'Wired Thought',
+      title: 'Graduation Parties',
+      image: '/service-section/grad.png',
+      bgColor: 'bg-[#ff3d33]',
       zIndex: 'z-9'
     },
     {
       id: 'card-7',
       subtitle: 'Silent Repetition',
-      title: 'Quinceañeras',
-      image: '/service-section/quinceanera.png',
-      bgColor: 'bg-[#dc2626]',
+      title: 'Corporate Events',
+      image: '/service-section/corporate.png',
+      bgColor: 'bg-[#2563eb]',
       zIndex: 'z-8'
     },
     {
       id: 'card-8',
       subtitle: 'Silent Repetition',
-      title: 'Festive Parties',
-      image: '/service-section/festive.png',
-      bgColor: 'bg-[#7c3aed]',
+      title: 'Bar Mitzvahs',
+      image: '/service-section/barmitzvah.png',
+      bgColor: 'bg-[#059669]',
       zIndex: 'z-7'
     },
     {
       id: 'card-9',
       subtitle: 'Silent Repetition',
-      title: 'Holiday Parties',
-      image: '/service-section/holiday.png',
-      bgColor: 'bg-[#ea580c]',
+      title: 'Quinceañeras',
+      image: '/service-section/quinceanera.png',
+      bgColor: 'bg-[#dc2626]',
       zIndex: 'z-6'
     },
     {
       id: 'card-10',
       subtitle: 'Silent Repetition',
-      title: 'Anniversary Parties',
-      image: '/service-section/anniversary.png',
-      bgColor: 'bg-[#0891b2]',
+      title: 'Holiday Parties',
+      image: '/service-section/holiday.png',
+      bgColor: 'bg-[#ea580c]',
       zIndex: 'z-5'
     },
   ];

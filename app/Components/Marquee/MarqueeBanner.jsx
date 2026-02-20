@@ -95,13 +95,13 @@ const MarqueeBanner = () => {
     >
       <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between xl:justify-center py-8">
         <div 
-          className="relative w-[200%] text-[--base-300] will-change-transform translate-x-[25%] 2xl:text-[8vw] text-nowrap" 
+          className="relative w-[200%] text-[white] will-change-transform translate-x-[25%] 2xl:text-[8vw] text-nowrap" 
           ref={marquee1Ref}
         >
           <p className="font-title-bold text-8xl xl:text-[10rem]">We are here for your events</p>
         </div>
         <div 
-          className="relative w-[200%] text-[--base-300] will-change-transform -translate-x-[25%] 2xl:text-[8vw] text-nowrap" 
+          className="relative w-[200%] text-[white] will-change-transform -translate-x-[25%] 2xl:text-[8vw] text-nowrap" 
           ref={marquee2Ref}
         >
           <p className="font-title-bold text-8xl xl:text-[10rem]">We are here for your events</p>
@@ -109,7 +109,7 @@ const MarqueeBanner = () => {
       </div>
       
       <div className="relative w-[35%] h-[70%] 2xl:max-w-150 max-h-[40rem] rounded-2xl bg-black overflow-hidden max-[1000px]:w-[calc(100%-3rem)]">
-        <div className="w-full px-8 pt-12 pb-8 text-[--base-100] flex flex-col justify-center items-center text-center gap-8">
+        <div className="w-full px-8 pt-12 pb-8 text-[white] flex flex-col justify-center items-center text-center gap-8">
           <Copy>
             <p className="font-title text-4xl">Make Every Moment Count</p>
           </Copy>

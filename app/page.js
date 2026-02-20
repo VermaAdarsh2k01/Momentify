@@ -29,7 +29,7 @@ export default function Home() {
       <CTABanner />
       <FAQ />
       {/* <ContactSectionNew /> */}
-      <ContactSection />
+      {/* <ContactSection /> */}
     </div>
   );
 }

@@ -15,7 +15,9 @@ const ContactButton = ({
   modalSubtitle = "Tell us about your project and we'll get back to you within 24 hours.",
   onFormSubmit,
   className = "",
-  variant = "primary" // primary, secondary, outline
+  variant = "primary", // primary, secondary, outline
+  scale = true, // boolean prop to control scale animation on hover
+  size = "md" // sm, md, lg
 }) => {
   const handleFormSubmit = async (formData) => {
     try {
@@ -49,20 +51,43 @@ const ContactButton = ({
     }
   };
 
+  const getSizeClasses = () => {
+    switch (size) {
+      case "sm":
+        return "px-6 py-3 gap-3 text-base";
+      case "lg":
+        return "px-10 py-5 gap-5 text-xl";
+      default: // md
+        return "px-8 py-4 gap-4 text-lg";
+    }
+  };
+
+  const getIconSize = () => {
+    switch (size) {
+      case "sm":
+        return { container: "w-6 h-6", svg: { width: "12", height: "12" } };
+      case "lg":
+        return { container: "w-10 h-10", svg: { width: "20", height: "20" } };
+      default: // md
+        return { container: "w-8 h-8", svg: { width: "16", height: "16" } };
+    }
+  };
+
   const getButtonClasses = () => {
     const baseClasses = `
-      relative inline-flex items-center justify-between gap-4 px-8 py-4 
-      rounded-full font-body font-medium text-lg 
+      relative inline-flex items-center justify-between 
+      rounded-full font-body font-medium 
       overflow-hidden group cursor-pointer border-2 uppercase tracking-wide
+      ${getSizeClasses()}
     `;
 
     switch (variant) {
       case "secondary":
-        return `${baseClasses} bg-white text-black border-black`;
+        return `${baseClasses} border-black`;
       case "outline":
-        return `${baseClasses} bg-transparent text-black border-black`;
+        return `${baseClasses} border-black`;
       default: // primary
-        return `${baseClasses} bg-black text-white border-black`;
+        return `${baseClasses} border-black`;
     }
   };
 
@@ -76,7 +101,7 @@ const ContactButton = ({
             color: variant === "primary" ? "#ffffff" : "#000000"
           }}
           whileHover={{ 
-            scale: 1.02,
+            scale: scale ? 1.02 : 1,
             backgroundColor: variant === "primary" ? "#ffffff" : "#000000",
             color: variant === "primary" ? "#000000" : "#ffffff"
           }}
@@ -87,22 +112,16 @@ const ContactButton = ({
             <span className="relative z-10">{buttonText}</span>
             
             {/* Arrow Icon */}
-            <motion.div
-              className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center"
-              initial={{
-                backgroundColor: variant === "primary" ? "white" : "black",
-                color: variant === "primary" ? "black" : "white",
-              }}
-              whileHover={{ 
-                rotate: 45,
-                backgroundColor: variant === "primary" ? "black" : "white",
-                color: variant === "primary" ? "white" : "black",
-              }}
-              transition={{ duration: 0.3 }}
+            <div
+              className={`relative z-10 ${getIconSize().container} rounded-full flex items-center justify-center transition-colors duration-300 ${
+                variant === "primary" 
+                  ? "bg-white text-black group-hover:bg-black group-hover:text-white" 
+                  : "bg-black text-white group-hover:bg-white group-hover:text-black"
+              }`}
             >
               <svg
-                width="16"
-                height="16"
+                width={getIconSize().svg.width}
+                height={getIconSize().svg.height}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -113,7 +132,7 @@ const ContactButton = ({
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7,7 17,7 17,17" />
               </svg>
-            </motion.div>
+            </div>
           </div>
           
           {/* Background animation */}
@@ -134,7 +153,7 @@ const ContactButton = ({
             {/* Modal Header */}
             <div className="mb-8 text-center">
               <motion.h2 
-                className="text-3xl md:text-xl font-title-bold text-black dark:text-white mb-4"
+                className="text-3xl md:text-xl font-title-bold text-black mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -142,7 +161,7 @@ const ContactButton = ({
                 {modalTitle}
               </motion.h2>
               <motion.p 
-                className="text-neutral-600 dark:text-neutral-400 text-lg font-body"
+                className="text-neutral-600 text-lg font-body"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
