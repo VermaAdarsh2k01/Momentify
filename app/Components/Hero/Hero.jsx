@@ -14,6 +14,15 @@ const Hero = () => {
         // Set initial states immediately to prevent FOUC
         gsap.set(heroContainer.current, { padding: "0px" });
         gsap.set(videoContainer.current, { borderRadius: "0%" });
+        gsap.set(contactButtonContainer.current, { opacity: 0, y: 24 });
+
+        gsap.to(contactButtonContainer.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            delay: 2,
+        });
         
         // Create matchMedia instance for responsive animations
         const mm = gsap.matchMedia();
@@ -86,7 +95,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className='w-full xl:w-[40%] h-fit p-6 absolute bottom-24 left-1/2 transform max-[1000px]:-translate-x-1/2 xl:bottom-4 xl:right-4 flex flex-col lg:items-start items-center gap-6' ref={contactButtonContainer}>
+            <div className='w-full xl:w-[40%] h-fit p-6 absolute bottom-24 left-1/2 transform max-[1000px]:-translate-x-1/2 xl:bottom-4 xl:right-4 flex flex-col lg:items-start items-center gap-6 opacity-0' ref={contactButtonContainer}>
                 <p className='font-title text-white xl:text-5xl hidden lg:block '>Experience for people who are looking for the best</p>
                 <ContactButton className='w-fit' buttonText='Contact Us' scale={false} />
             </div>

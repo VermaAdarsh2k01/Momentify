@@ -108,7 +108,7 @@ const ServicesContent = () => {
       title: "Holiday Parties",
       subtitle: "Festive Event Planning",
       description: "Make your holiday celebrations magical with our festive event planning. From intimate family gatherings to large corporate holiday parties.",
-      features: [],
+      features: ["Diwali Parties" , "Holi Parties" , "Christmas Parties" , "New Year Parties" , "Thanksgiving Parties" , "Easter Parties" , "Halloween Parties"],
       category: "Holiday Parties",
       link: "#",
       mediaUrl: "/services/holiday.jpg",

@@ -145,20 +145,20 @@ const ContactSectionNew = () => {
                     <span className="text-2xl mr-4">📱</span>
                     <div>
                       <p className="text-white font-body">Phone</p>
-                      <p className="text-gray-300 font-body">+1 306 419 1999</p>
+                      <p className="text-gray-300 font-body">+1 303 419 1999</p>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-2xl mr-4">📍</span>
                     <div>
                       <p className="text-white font-body">Location</p>
-                      <p className="text-gray-300 font-body">Denver,  Colorado</p>
+                      <p className="text-gray-300 font-body">6109 S Cathay CT aurora , CO 80016 ,Denver,  Colorado</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div>
+              {/* <div>
                 <h3 className="text-white font-title text-2xl mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
                   <button className="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition-all duration-300">
@@ -171,7 +171,7 @@ const ContactSectionNew = () => {
                     <span className="text-white text-xl">🐦</span>
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </Copy>
 

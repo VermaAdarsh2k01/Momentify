@@ -75,16 +75,16 @@ const StickyCards = () => {
       bgColor: 'bg-[#059669]',
       zIndex: 'z-7'
     },
+    // {
+    //   id: 'card-9',
+    //   subtitle: 'Silent Repetition',
+    //   title: 'Quinceañeras',
+    //   image: '/service-section/quinceanera.png',
+    //   bgColor: 'bg-[#dc2626]',
+    //   zIndex: 'z-6'
+    // },
     {
       id: 'card-9',
-      subtitle: 'Silent Repetition',
-      title: 'Quinceañeras',
-      image: '/service-section/quinceanera.png',
-      bgColor: 'bg-[#dc2626]',
-      zIndex: 'z-6'
-    },
-    {
-      id: 'card-10',
       subtitle: 'Silent Repetition',
       title: 'Holiday Parties',
       image: '/service-section/holiday.png',
