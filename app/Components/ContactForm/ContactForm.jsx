@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { sendContactEmail } from "../../utils/emailjs";
 
 const ContactForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const ContactForm = ({ onSubmit }) => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,12 +27,15 @@ const ContactForm = ({ onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(null);
     
     try {
-      // Here you can add your form submission logic
-      // For now, we'll just log the data and call the onSubmit callback
-      console.log("Form submitted:", formData);
+      // Send email using EmailJS utility
+      const result = await sendContactEmail(formData);
+      console.log('Email sent successfully:', result);
+      setSubmitStatus('success');
       
+      // Call the onSubmit callback if provided
       if (onSubmit) {
         await onSubmit(formData);
       }
@@ -46,6 +51,7 @@ const ContactForm = ({ onSubmit }) => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
@@ -119,7 +125,7 @@ const ContactForm = ({ onSubmit }) => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         <div>
           <label htmlFor="phone" className={labelClasses}>
             Phone Number
@@ -132,20 +138,6 @@ const ContactForm = ({ onSubmit }) => {
             onChange={handleChange}
             className={inputClasses}
             placeholder="Enter your phone number"
-          />
-        </div>
-        <div>
-          <label htmlFor="company" className={labelClasses}>
-            Company/Organization
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formData.company}
-            onChange={handleChange}
-            className={inputClasses}
-            placeholder="Enter your company name"
           />
         </div>
       </div>
@@ -191,6 +183,31 @@ const ContactForm = ({ onSubmit }) => {
           "Send Message"
         )}
       </motion.button>
+
+      {/* Status Messages */}
+      {submitStatus === 'success' && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+        >
+          <p className="text-green-800 dark:text-green-200 font-medium">
+            ✅ Message sent successfully! We'll get back to you soon.
+          </p>
+        </motion.div>
+      )}
+
+      {submitStatus === 'error' && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+        >
+          <p className="text-red-800 dark:text-red-200 font-medium">
+            ❌ Failed to send message. Please try again or contact us directly.
+          </p>
+        </motion.div>
+      )}
     </motion.form>
   );
 };

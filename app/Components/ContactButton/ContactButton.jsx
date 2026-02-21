@@ -24,30 +24,13 @@ const ContactButton = ({
       // If custom onFormSubmit is provided, use it
       if (onFormSubmit) {
         await onFormSubmit(formData);
-      } else {
-        // Default: Send to API endpoint
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to submit form');
-        }
-        
-        const result = await response.json();
-        console.log('Form submitted successfully:', result);
       }
+      // Note: EmailJS handling is done in ContactForm component itself
+      // No need for additional API calls here
       
-      // Show success message
-      alert("Thank you for your message! We'll get back to you soon.");
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      alert(`There was an error submitting your message: ${error.message}. Please try again.`);
+      // Error handling is done in ContactForm component
     }
   };
 
@@ -160,14 +143,14 @@ const ContactButton = ({
               >
                 {modalTitle}
               </motion.h2>
-              <motion.p 
+              {/* <motion.p 
                 className="text-neutral-600 text-lg font-body"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
                 {modalSubtitle}
-              </motion.p>
+              </motion.p> */}
             </div>
 
             {/* Contact Form */}
