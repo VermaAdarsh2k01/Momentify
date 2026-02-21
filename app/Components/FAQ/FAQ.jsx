@@ -70,12 +70,12 @@ const FAQ = () => {
               <div className="border border-gray-200 rounded-2xl overflow-hidden">
                 <button
                   onClick={() => toggleFAQ(faq.id)}
-                  className="w-full px-8 py-6 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center"
+                  className="w-full px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex justify-between items-start gap-4"
                 >
-                  <h3 className="text-black font-title text-lg lg:text-xl pr-4">
+                  <h3 className="text-black font-title text-base sm:text-lg lg:text-xl leading-tight flex-1">
                     {faq.question}
                   </h3>
-                  <span className={`text-2xl transform transition-transform duration-300 ${
+                  <span className={`text-xl sm:text-2xl transform transition-transform duration-300 flex-shrink-0 mt-0.5 ${
                     openFAQ === faq.id ? 'rotate-45' : ''
                   }`}>
                     +
@@ -91,8 +91,8 @@ const FAQ = () => {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="px-8 pb-6 pt-2">
-                    <p className="text-gray-700 font-body leading-relaxed">
+                  <div className="px-4 pb-4 pt-2 sm:px-6 sm:pb-5 lg:px-8 lg:pb-6">
+                    <p className="text-gray-700 font-body text-sm sm:text-base leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
