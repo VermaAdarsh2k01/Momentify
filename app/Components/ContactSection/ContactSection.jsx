@@ -17,9 +17,9 @@ const ContactSection = () => {
   };
 
   return (
-    <div className="h-screen w-full bg-black flex items-center justify-center">
+    <div className="h-[50svh] w-full bg-white flex items-center justify-center rounded-2xl overflow-hidden">
       <div className="text-center space-y-8">
-        <h2 className="text-white text-4xl md:text-6xl font-title-bold">
+        <h2 className="text-black text-4xl md:text-6xl font-title-bold">
           Ready to Get Started?
         </h2>
         <ContactButton

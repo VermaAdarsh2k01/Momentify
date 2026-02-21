@@ -157,7 +157,7 @@ const ServicesContent = () => {
   return (
     <>
       {/* Services Section */}
-      <section className="py-20 bg-white" ref={portfolioRef}>
+      <section className="py-20 bg-[#8F1B32]" ref={portfolioRef}>
         <div className="max-w-6xl mx-auto px-5">
 
           <div className="grid grid-cols-1 gap-6 lg:gap-8">

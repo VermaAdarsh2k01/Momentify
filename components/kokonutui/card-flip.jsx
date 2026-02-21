@@ -77,7 +77,7 @@ export default function CardFlip({
             <div className="hidden md:flex h-full items-center justify-between">
               {/* Left side - Title and Description */}
               <div className="max-w-md space-y-4">
-                <h3 className="font-title-bold text-2xl xl:text-7xl text-zinc-900 leading-tight tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px]">
+                <h3 className="font-title-bold text-2xl xl:text-7xl text-black leading-tight tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px]">
                   {title}
                 </h3>
                 <p className="text-base text-zinc-600 leading-relaxed transition-all delay-[50ms] duration-500 ease-out-expo group-hover:translate-y-[-2px]">
@@ -143,8 +143,8 @@ export default function CardFlip({
               </div>
 
               {/* Bottom - Title and Description */}
-              <div className="flex-1 space-y-3">
-                <h3 className="font-title text-xl text-zinc-900 leading-tight tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px]">
+              <div className=" space-y-3">
+                <h3 className="font-title text-3xl text-zinc-900 leading-tight tracking-tight transition-all duration-500 ease-out-expo group-hover:translate-y-[-2px]">
                   {title}
                 </h3>
                 <p className="text-sm text-zinc-600 leading-relaxed transition-all delay-[50ms] duration-500 ease-out-expo group-hover:translate-y-[-2px]">

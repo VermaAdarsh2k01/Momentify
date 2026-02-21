@@ -304,14 +304,14 @@ const Navbar = () => {
 
   return (
     <nav className="menu" ref={menuRef}>
-      <div className="menu-header" onClick={toggleMenu}>
-        <div className="flex items-end gap-2">
+      <div className="menu-header">
+        <Link href="/" className="flex items-end gap-2">
           <img src="/Logo.png" alt="Momentify" className="menu-logo" />
           <span className="font-moglan text-black text-3xl leading-none  hidden md:block">
             Momentify Events
           </span>
-        </div>
-        <button className="menu-toggle" aria-label="Toggle menu">
+        </Link>
+        <button className="menu-toggle" aria-label="Toggle menu" onClick={toggleMenu}>
           <div className="menu-hamburger-icon" ref={hamburgerRef}>
             <span className="menu-item"></span>
             <span className="menu-item"></span>
@@ -340,13 +340,13 @@ const Navbar = () => {
               >
                 <h4 className="font-title">Services</h4>
               </Link>
-              <Link
+              {/* <Link
                 href="/#"
                 className="menu-main-link lg:text-7xl"
                 onClick={handleLinkClick}
               >
                 <h4 className="font-title">About</h4>
-              </Link>
+              </Link> */}
               <Link
                 href="/contact"
                 className="menu-main-link lg:text-7xl"

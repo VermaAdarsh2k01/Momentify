@@ -109,8 +109,8 @@ const Marquee = ({
         /* Responsive adjustments */
         @media (max-width: 768px) {
           .marquee-image {
-            height: 80px;
-            width: 140px;
+            height: 320px;
+            width: 200px;
           }
           
           .marquee-content {
@@ -121,8 +121,8 @@ const Marquee = ({
 
         @media (max-width: 480px) {
           .marquee-image {
-            height: 60px;
-            width: 100px;
+            height: 100px;
+            width: 160px;
           }
           
           .marquee-content {

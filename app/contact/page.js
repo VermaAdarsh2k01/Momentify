@@ -3,9 +3,9 @@ import ContactSectionNew from '../Components/ContactSection/ContactSectionNew'
 
 const page = () => {
   return (
-    <>
-        <ContactSectionNew/> 
-    </>
+    <div className="">
+      <ContactSectionNew />
+    </div>
   )
 }
 

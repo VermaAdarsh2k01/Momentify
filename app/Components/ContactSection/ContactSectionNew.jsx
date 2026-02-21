@@ -107,7 +107,7 @@ const ContactSectionNew = () => {
     }
   };
   return (
-    <section className="bg-black min-h-screen flex items-center py-20 lg:py-32">
+    <section className="bg-black min-h-screen flex items-center py-32 lg:py-32">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 w-full">
         <Copy delay={0} type="slide">
           <div className="text-center mb-16 lg:mb-24">
@@ -138,21 +138,21 @@ const ContactSectionNew = () => {
                     <span className="text-2xl mr-4">📧</span>
                     <div>
                       <p className="text-white font-body">Email</p>
-                      <p className="text-gray-300 font-body">hello@momentify.com</p>
+                      <p className="text-gray-300 font-body">contact@momentifyevents.com</p>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-2xl mr-4">📱</span>
                     <div>
                       <p className="text-white font-body">Phone</p>
-                      <p className="text-gray-300 font-body">+1 (555) 123-4567</p>
+                      <p className="text-gray-300 font-body">+1 306 419 1999</p>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-2xl mr-4">📍</span>
                     <div>
                       <p className="text-white font-body">Location</p>
-                      <p className="text-gray-300 font-body">New York, NY</p>
+                      <p className="text-gray-300 font-body">Denver,  Colorado</p>
                     </div>
                   </div>
                 </div>
