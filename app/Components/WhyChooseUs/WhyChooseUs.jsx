@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="bg-white min-h-screen flex items-center py-20 lg:py-32">
+    <section className="bg-white min-h-screen flex items-center py-20 lg:py-32" id="our-values">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <Copy delay={0} type="slide">
           <div className="text-center mb-16 lg:mb-24">

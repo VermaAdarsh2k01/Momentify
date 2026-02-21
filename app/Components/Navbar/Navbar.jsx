@@ -362,18 +362,18 @@ const Navbar = () => {
                 <p>Subroutine</p>
               </div>
               <div className="menu-sub-links">
-                <Link href="/lookbook" onClick={handleLinkClick}>
-                  Lookbook
+                <Link href="/#gallery" onClick={handleLinkClick}>
+                  Gallery
                 </Link>
-                <Link href="/touchpoint" onClick={handleLinkClick}>
-                  Touchpoint
+                <Link href="/#testimonials" onClick={handleLinkClick}>
+                  Testimonials
                 </Link>
-                <Link href="/unit" onClick={handleLinkClick}>
-                  Shell (A)
+                <Link href="/#our-values" onClick={handleLinkClick}>
+                  Our Values
                 </Link>
               </div>
             </div>
-            <div className="menu-overlay-sub-col">
+            {/* <div className="menu-overlay-sub-col">
               <div className="menu-items-header">
                 <p>Field Tests</p>
               </div>
@@ -391,13 +391,13 @@ const Navbar = () => {
                   04. Shellcode
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="menu-overlay-footer">
           <div className="menu-social">
             <a
-              href="https://x.com/codegridweb"
+              href="https://x.com/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLinkClick}
@@ -407,7 +407,7 @@ const Navbar = () => {
           </div>
           <div className="menu-social">
             <a
-              href="https://www.instagram.com/codegridweb/"
+              href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLinkClick}
@@ -417,7 +417,7 @@ const Navbar = () => {
           </div>
           <div className="menu-social">
             <a
-              href="https://www.youtube.com/@codegrid"
+              href="https://www.youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLinkClick}
