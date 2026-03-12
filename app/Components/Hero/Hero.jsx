@@ -100,8 +100,6 @@ const Hero = () => {
                 <ContactButton className='w-fit' buttonText='Contact Us' scale={false} />
             </div>
         </div>
-
-        
     </div>
   )
 }
