@@ -17,7 +17,7 @@ import Preloader from "./Components/Preloader.jsx";
 
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Preloader />
       <ScrollHero />
       {/* <Hero />
