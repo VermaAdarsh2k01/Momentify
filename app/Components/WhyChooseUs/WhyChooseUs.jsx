@@ -86,7 +86,7 @@ const WhyChooseUs = () => {
                 {service.description}
               </p>
             </div>
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <button
                 className={`flex items-center gap-1 text-sm font-medium transition-all duration-150 ${
                   service.highlight
@@ -96,7 +96,7 @@ const WhyChooseUs = () => {
               >
                 See details <ChevronRight size={14} />
               </button>
-            </div>
+            </div> */}
           </div>
         ))}
         </div>
