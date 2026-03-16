@@ -275,7 +275,7 @@ const   TrailContainer = () => {
         <div className="background-text flex flex-col gap-20 lg:gap-28">
             <Copy delay={0} type="slide">
                 <div className="text-center">
-                    <p className="text-white text-6xl font-title leading-[1] lg:text-[6rem]">
+                    <p className="text-black text-6xl font-title leading-[1] lg:text-[6rem]">
                     About Us
                     </p>
                     <div className="flex justify-center">
@@ -288,7 +288,7 @@ const   TrailContainer = () => {
                 </div>
             </Copy>
             <Copy delay={0} type="slide">
-                <p className="max-w-[1000px] mx-auto text-center text-white text-xl font-body leading-[1] lg:text-[1.5rem]">
+                <p className="max-w-[1000px] mx-auto text-center text-black text-xl font-body leading-[1] lg:text-[1.5rem]">
                 At Momentify, we believe every event is more than an occasion—it’s a masterpiece of emotions, culture, and memories. We are a luxury end-to-end event management company dedicated to designing extraordinary experiences that feel personal, elegant, and unforgettable.
                 </p>
             </Copy>

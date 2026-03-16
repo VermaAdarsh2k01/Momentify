@@ -161,16 +161,14 @@ const Preloader = () => {
         <div
           className={`
             preloader-progress-bar
-            absolute top-0
-            left-0 md:left-1/2
+            absolute top-1/2 left-1/2
             w-full md:w-[55%]
-            h-full
+            h-[3.25rem]
             bg-neutral-300
-            -translate-x-0 md:-translate-x-1/2
             origin-left
             will-change-transform
           `}
-          style={{ transform: "translateX(0) scaleX(0)" }}
+          style={{ transform: "translate(-50%, -50%) scaleX(0)" }}
         />
         <div
           className={`

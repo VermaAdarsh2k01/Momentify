@@ -124,7 +124,7 @@ export default function WaabiScrollAnimation() {
   }, []);
 
   return (
-    <main className="bg-[#e3e3db] font-[Inter,sans-serif] overflow-x-hidden">
+    <main className="bg-[#e3e3db] font-[Inter,sans-serif]">
       {/* HERO */}
       <section className="hero relative w-full h-[100svh]">
         <div
@@ -190,7 +190,7 @@ export default function WaabiScrollAnimation() {
             className="about-imgs-col hidden lg:flex relative h-[125%] flex-col justify-around translate-y-[500px] md:-translate-x-[225px]"
             style={{ willChange: "transform" }}
           >
-            {["/services/music.jpg", "/services/social.jpg", "/services/wedding.jpg", "/services/holi.jpg"].map(
+            {["/services/music.jpg", "/services/social.jpg", "/services/wedding.webp", "/services/holi.jpg"].map(
               (src, idx) => (
                 <div
                   key={idx}
@@ -211,7 +211,7 @@ export default function WaabiScrollAnimation() {
             className="about-imgs-col hidden lg:flex relative h-[125%] flex-col justify-around translate-y-[500px] md:translate-x-[225px]"
             style={{ willChange: "transform" }}
           >
-            {["/services/music.jpg", "/services/social.jpg", "/services/wedding.jpg", "/services/holi.jpg"].map(
+            {["/services/music.jpg", "/services/social.jpg", "/services/wedding.webp", "/services/holi.jpg"].map(
               (src, idx) => (
                 <div
                   key={idx}
@@ -249,15 +249,14 @@ export default function WaabiScrollAnimation() {
           </div>
         </div>
 
-        <div className="about-header absolute left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 px-8 md:w-2/5 md:px-0">
+        <div className="about-header absolute left-1/2 top-[58%] z-10 w-full -translate-x-1/2 -translate-y-1/2 px-8 md:top-1/2 md:w-2/5 md:px-0">
           <h3 className="text-2xl font-normal leading-none tracking-[-0.05rem] md:text-3xl">
             We are a team of professionals who are passionate about creating events that are unique and memorable.
           </h3>
         </div>
       </section>
 
-      {/* OUTRO */}
-      <AboutSection />
+      
     </main>
   );
 }

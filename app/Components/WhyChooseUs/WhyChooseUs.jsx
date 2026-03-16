@@ -1,78 +1,103 @@
 "use client";
 import React from "react";
+import Link from "next/link";
+import { Monitor, Palette, BarChart2, Lightbulb, Megaphone, ShieldCheck, ChevronRight, Star} from "lucide-react";
 import Copy from "../TextAnimation/Copy";
 
-const WhyChooseUs = () => {
-  const whyChooseUsFeatures = [
-    {
-      title: "Luxury Experience",
-      description: "We specialize in creating high-end, sophisticated events that reflect your unique style and vision.",
-      icon: "👑"
-    },
-    {
-      title: "End-to-End Service",
-      description: "From initial concept to final cleanup, we handle every aspect of your event with meticulous attention to detail.",
-      icon: "🔄"
-    },
-    {
-      title: "Personalized Approach",
-      description: "Every event is tailored to your specific needs, ensuring a truly unique and personalized experience.",
-      icon: "💎"
-    },
-    {
-      title: "Expert Team",
-      description: "Our experienced professionals bring creativity, expertise, and passion to every project we undertake.",
-      icon: "🎨"
-    },
-    {
-      title: "Stress-Free Planning",
-      description: "We take care of all the logistics so you can enjoy the planning process and your special day.",
-      icon: "🧘‍♀️"
-    },
-    {
-      title: "Unforgettable Results",
-      description: "We create events that exceed expectations and leave lasting impressions on you and your guests.",
-      icon: "⭐"
-    }
-  ];
+const whyChooseUsFeatures = [
+  {
+    title: "Luxury Experience",
+    description: "We specialize in creating high-end, sophisticated events that reflect your unique style and vision.",
+    icon: <Monitor size={28} strokeWidth={1.5} />,
+  },
+  {
+    title: "End-to-End Service",
+    description: "From initial concept to final cleanup, we handle every aspect of your event with meticulous attention to detail.",
+    icon: <BarChart2 size={28} strokeWidth={1.5} />,
+  },
+  {
+    title: "Personalized Approach",
+    description: "Every event is tailored to your specific needs, ensuring a truly unique and personalized experience.",
+    icon: <Lightbulb size={28} strokeWidth={1.5} />,
+  },
+  {
+    title: "Expert Team",
+    description: "Our experienced professionals bring creativity, expertise, and passion to every project we undertake.",
+    icon: <Megaphone size={28} strokeWidth={1.5} />,
+  },
+  {
+    title: "Stress-Free Planning",
+    description: "We take care of all the logistics so you can enjoy the planning process and your special day.",
+    icon: <ShieldCheck size={28} strokeWidth={1.5} />,
+  },
+  {
+    title: "Unforgettable Results",
+    description: "We create events that exceed expectations and leave lasting impressions on you and your guests.",
+    icon: <Star size={28} strokeWidth={1.5} />,
+  },
+];
 
+const WhyChooseUs = () => {
   return (
     <section className="bg-white min-h-screen flex items-center py-20 lg:py-32" id="our-values">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8 w-full">
         <Copy delay={0} type="slide">
           <div className="text-center mb-16 lg:mb-24">
-            <h2 className="text-black text-5xl lg:text-7xl xl:text-8xl font-title leading-[1] mb-6">
-              Why Choose Us
+            <h2 className="text-black text-4xl lg:text-5xl xl:text-6xl font-title font-bold leading-tight mb-4">
+              Our Comprehensive Services
             </h2>
-            <div className="flex justify-center mb-8">
-              <img 
-                src="/highlight.svg" 
-                alt="Highlight decoration" 
-                className="w-40 h-auto lg:w-48 xl:w-56 invert"
-              />
-            </div>
-            <p className="text-black text-lg lg:text-xl font-body max-w-3xl mx-auto leading-relaxed">
+            <p className="text-gray-600 text-lg font-body max-w-2xl mx-auto leading-relaxed">
               Discover what sets us apart in creating extraordinary events and unforgettable experiences
             </p>
           </div>
         </Copy>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {whyChooseUsFeatures.map((feature, index) => (
-            <Copy key={feature.title} delay={index * 0.1} type="slide">
-              <div className="text-center group hover:bg-gray-50 p-6 rounded-2xl transition-all duration-300">
-                <div className="text-5xl lg:text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
-                <h3 className="text-black text-xl lg:text-2xl font-title mb-4 leading-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-700 font-body text-sm lg:text-base leading-relaxed">
-                  {feature.description}
-                </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {whyChooseUsFeatures.map((service, index) => (
+          <div
+            key={index}
+            className={`rounded-2xl p-6 flex flex-col justify-between border transition-all duration-200 group ${
+              service.highlight
+                ? "bg-blue-600 text-white border-blue-600"
+                : "bg-white text-gray-900 border-gray-200 hover:border-gray-300 hover:shadow-sm"
+            }`}
+          >
+            <div>
+              <div
+                className={`mb-4 ${
+                  service.highlight ? "text-white" : "text-gray-800"
+                }`}
+              >
+                {service.icon}
               </div>
-            </Copy>
-          ))}
+              <h3
+                className={`text-base font-semibold mb-2 leading-snug ${
+                  service.highlight ? "text-white" : "text-gray-900"
+                }`}
+              >
+                {service.title}
+              </h3>
+              <p
+                className={`text-sm leading-relaxed ${
+                  service.highlight ? "text-blue-100" : "text-gray-500"
+                }`}
+              >
+                {service.description}
+              </p>
+            </div>
+            <div className="mt-6">
+              <button
+                className={`flex items-center gap-1 text-sm font-medium transition-all duration-150 ${
+                  service.highlight
+                    ? "text-white hover:gap-2"
+                    : "text-gray-700 hover:text-blue-600 hover:gap-2"
+                }`}
+              >
+                See details <ChevronRight size={14} />
+              </button>
+            </div>
+          </div>
+        ))}
         </div>
       </div>
     </section>

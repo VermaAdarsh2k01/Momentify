@@ -6,11 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const StickyCards = () => {
-  const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
-
-  const cardData = [
+export const cardData = [
     {
       id: 'card-1',
       subtitle: 'Silent Repetition',
@@ -93,6 +89,10 @@ const StickyCards = () => {
     },
   ];
 
+const StickyCards = () => {
+  const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
+
   useEffect(() => {
     const cards = cardsRef.current;
     const totalCards = cards.length;
@@ -165,9 +165,12 @@ const StickyCards = () => {
   return (
     <section 
       ref={sectionRef}
-      className="sticky-cards relative w-full h-screen overflow-hidden bg-[#e3e3db]"
+      className="sticky-cards relative w-full h-screen overflow-hidden bg-[#e3e3db] max-w-7xl mx-auto"
       style={{ perspective: '1000px' }}
     >
+      <h2 className="absolute top-8 left-8 z-[100] text-2xl md:text-3xl font-semibold tracking-tight text-[#1a1a1a]">
+        Our services
+      </h2>
       {cardData.map((card, index) => (
         <div
           key={card.id}

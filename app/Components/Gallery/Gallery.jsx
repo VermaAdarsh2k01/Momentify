@@ -1,70 +1,203 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import Copy from "../TextAnimation/Copy";
 
-const Gallery = () => {
-  const galleryImages = [
-    { id: 1, src: "/gallery/1.jpeg", alt: "Gallery image 1" },
-    { id: 2, src: "/gallery/2.jpeg", alt: "Gallery image 2" },
-    { id: 3, src: "/gallery/3.jpeg", alt: "Gallery image 3" },
-    { id: 4, src: "/gallery/4.jpeg", alt: "Gallery image 4" },
-    { id: 5, src: "/gallery/5.jpeg", alt: "Gallery image 5" },
-    { id: 6, src: "/gallery/6.jpeg", alt: "Gallery image 6" }
+import React, { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const TribehouseDetail = () => {
+  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  const gridRef = useRef(null);
+  const imageRefs = useRef([]);
+  const mobileImageRefs = useRef([]);
+  const linkButtonRef = useRef(null);
+
+  const assets = [
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/7nhXpmlIOiESWJ3OoGR9HBgV5Y8-22.jpg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/mTRESd7otbaABKWOn8BxLW6m6U-26.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/4ME4Wcngjgqlyh72qAtOlqYxiZY-27.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/e6podg8165mAfB0JGBA1eF82MNQ-28.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/vubyAuM0N7yIQMi8lqF1T7sZnc-29.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/ZWcm8YUhXg26cg06tDJQfhjQ-11.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/ZdcQJmyRqskeEGkvUZ0jGWBzdIg-12.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/NDH8zX3k3bMIhzWUhuayg4ivMk-13.jpeg",
+    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/44d65af4-e9b6-4719-afd8-999e849433b3-smalltribe-studio/assets/images/PPPQT5BDFKNGQb80W2ydFJ3dg-6.jpg"
   ];
 
-  return (
-    <section className="bg-[#8F1B32] min-h-screen flex items-center py-20 lg:py-32" id="gallery">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <Copy delay={0} type="slide">
-          <div className="text-center mb-16 lg:mb-24">
-            <h2 className="text-white text-5xl lg:text-7xl xl:text-8xl font-title leading-[1] mb-6">
-              Gallery
-            </h2>
-            <div className="flex justify-center mb-8">
-              <img 
-                src="/highlight.svg" 
-                alt="Highlight decoration" 
-                className="w-40 h-auto lg:w-48 xl:w-56"
-              />
-            </div>
-            <p className="text-white text-lg lg:text-xl font-body max-w-3xl mx-auto leading-relaxed mb-12">
-              Explore our portfolio of stunning events and celebrations
-            </p>
-          </div>
-        </Copy>
+  const CENTER_INDEX = 4;
 
-        {/* Gallery Grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          layout
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (typeof window === 'undefined') return;
+
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+
+    // Desktop: pin + scrub gallery animation
+    if (isDesktop) {
+      const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=200%",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+        }
+      });
+
+      // Initial state
+      imageRefs.current.forEach((ref, index) => {
+        if (!ref) return;
+        
+        if (index === CENTER_INDEX) {
+          gsap.set(ref, { 
+            scale: 2,
+            zIndex: 10,
+          });
+        } else {
+          // Calculate center offset for other images
+          const centerRect = imageRefs.current[CENTER_INDEX]?.getBoundingClientRect();
+          const currentRect = ref.getBoundingClientRect();
+          
+          if (centerRect && currentRect) {
+            const dx = centerRect.left - currentRect.left;
+            const dy = centerRect.top - currentRect.top;
+            
+            gsap.set(ref, {
+              x: dx,
+              y: dy,
+              scale: 0,
+              opacity: 0,
+              zIndex: 1,
+            });
+          }
+        }
+      });
+
+      // Set link button initial state
+      if (linkButtonRef.current) {
+        gsap.set(linkButtonRef.current, {
+          opacity: 0
+        });
+      }
+
+      // Animation
+      tl.to(imageRefs.current[CENTER_INDEX], {
+        scale: 1,
+        duration: 1,
+        ease: "power2.inOut"
+      }, 0);
+
+      imageRefs.current.forEach((ref, index) => {
+        if (index === CENTER_INDEX || !ref) return;
+        
+        tl.to(ref, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.inOut"
+        }, 0);
+      });
+
+      // Animate link button after cards animation finishes
+      if (linkButtonRef.current) {
+        tl.to(linkButtonRef.current, {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        }); // Start after 1 second (when cards animation finishes)
+      }
+    }, sectionRef);
+
+      return () => ctx.revert();
+    }
+
+    // Mobile: slide reveal as each image comes into view
+    if (!isDesktop) {
+      const mobileEls = mobileImageRefs.current.filter(Boolean);
+      if (mobileEls.length) {
+        gsap.set(mobileEls, { opacity: 0, y: 48 });
+        const ctx = gsap.context(() => {
+          mobileEls.forEach((el) => {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 88%",
+                end: "top 60%",
+                toggleActions: "play none none none",
+              },
+            });
+          });
+        }, sectionRef);
+        return () => ctx.revert();
+      }
+    }
+  }, []);
+
+  return (
+    <section ref={sectionRef} id="researches" className="w-full bg-white md:h-screen flex items-center overflow-hidden py-12 md:py-0">
+      <div ref={containerRef} className="max-w-[1440px] mx-auto px-5 relative flex flex-col gap-8 items-center justify-center w-full">
+        
+
+        {/* Desktop Grid Container - Hidden on mobile */}
+        <div 
+          ref={gridRef}
+          className="hidden md:grid grid-cols-3 gap-4 md:gap-6 w-full max-w-[800px]"
         >
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl aspect-square bg-gray-800"
+          {assets.map((src, index) => (
+            <div
+              key={index}
+              ref={el => { imageRefs.current[index] = el; }}
+              className="aspect-[4/3] relative rounded-[12px] overflow-hidden bg-[#f8f8f8]"
             >
               <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src={src}
+                alt=""
+                className="h-full w-full object-cover"
               />
-              {/* <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
-                <p className="text-white font-title text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center px-4">
-                  {image.alt}
-                </p>
-              </div> */}
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Mobile: Gallery title + grid - title above pictures, left-aligned */}
+        <div className="md:hidden flex flex-col gap-6 w-full max-w-[400px] items-start">
+          <h2 className="text-sm font-medium uppercase tracking-wider text-black/80">
+            Gallery
+          </h2>
+          <div className="grid grid-cols-1 gap-4 w-full">
+          {assets.map((src, index) => (
+            <div
+              key={index}
+              ref={el => { mobileImageRefs.current[index] = el; }}
+              className="aspect-[4/3] relative rounded-[12px] overflow-hidden bg-[#f8f8f8]"
+            >
+              <img
+                src={src}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ))}
+          </div>
+        </div>
+        {/* <a 
+          ref={linkButtonRef}
+          href='/researches' 
+          className=' px-3 py-2 md:px-8 md:py-3 border border-black rounded-2xl text-[14px] md:text-[16px]'
+        >
+          Explore More
+        </a> */}
       </div>
     </section>
   );
 };
 
-export default Gallery;
+export default TribehouseDetail;

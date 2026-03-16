@@ -1,30 +1,15 @@
 'use client';
-import { useMediaQuery } from '../app/hooks/useMediaQuery';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { MoveUpRight } from 'lucide-react';
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { portfolioItems } from '../../services/servicesData';
 
-const images = [
-  {
-    id: 1,
-    src: '/img1.jpg',
-    alt: 'Media & Digital Services',
-  },
-  {
-    id: 2,
-    src: '/img2.jpg',
-    alt: 'Manufacturing Services',
-  },
-  {
-    id: 3,
-    src: '/img3.jpg',
-    alt: 'Transportation Services',
-  },
-  {
-    id: 4,
-    src: '/img4.jpg',
-    alt: 'Medical Services',
-  },
-];
+// Map shared services data to ImageReveal format (id, src, alt)
+const images = portfolioItems.map((item) => ({
+  id: item.id,
+  src: item.mediaUrl,
+  alt: item.title,
+}));
 
 const ImageReveal = () => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
@@ -90,8 +75,13 @@ const ImageReveal = () => {
 
   return (
     <div
-      className="relative w-full min-h-fit bg-[#8F1B32] rounded-md"
+      className="relative w-full max-w-5xl mx-auto min-h-fit bg-white rounded-md py-24"
       onMouseLeave={handleMouseLeave}>
+      
+      <div className='w-full h-fit'>
+        <h1 className='text-4xl font-bold'> Our Services </h1>
+      </div>
+      
       {images.map((image) => (
         <div
           key={image.id}

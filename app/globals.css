@@ -2,9 +2,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-*{
-  overflow-x: hidden;
-}
 
 :root {
   --base-100: #edf1e8;
