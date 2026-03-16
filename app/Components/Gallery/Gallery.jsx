@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TextBlock from "../TextBlock/TextBlock";
 
 const TribehouseDetail = () => {
   const sectionRef = useRef(null);
@@ -29,9 +30,9 @@ const TribehouseDetail = () => {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
     // Desktop: pin + scrub gallery animation
     if (isDesktop) {
@@ -108,7 +109,7 @@ const TribehouseDetail = () => {
         tl.to(linkButtonRef.current, {
           opacity: 1,
           duration: 0.5,
-          ease: "power2.out"
+          ease: "power2.out",
         }); // Start after 1 second (when cards animation finishes)
       }
     }, sectionRef);
@@ -145,7 +146,10 @@ const TribehouseDetail = () => {
   return (
     <section ref={sectionRef} id="researches" className="w-full bg-white md:h-screen flex items-center overflow-hidden py-12 md:py-0">
       <div ref={containerRef} className="max-w-[1440px] mx-auto px-5 relative flex flex-col gap-8 items-center justify-center w-full">
-        
+        <TextBlock
+          title="Visual gallery"
+          body="Browse highlights from past shoots and campaigns to get a feel for our visual style and storytelling."
+        />
 
         {/* Desktop Grid Container - Hidden on mobile */}
         <div 
@@ -167,11 +171,8 @@ const TribehouseDetail = () => {
           ))}
         </div>
 
-        {/* Mobile: Gallery title + grid - title above pictures, left-aligned */}
+        {/* Mobile grid */}
         <div className="md:hidden flex flex-col gap-6 w-full max-w-[400px] items-start">
-          <h2 className="text-sm font-medium uppercase tracking-wider text-black/80">
-            Gallery
-          </h2>
           <div className="grid grid-cols-1 gap-4 w-full">
           {assets.map((src, index) => (
             <div

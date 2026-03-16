@@ -10,7 +10,7 @@ import {
 import ContactForm from "../ContactForm/ContactForm";
 
 const ContactButton = ({ 
-  buttonText = "View Experiences",
+  buttonText = "Book a Free Call",
   modalTitle = "Let's Start Your Journey",
   modalSubtitle = "Tell us about your project and we'll get back to you within 24 hours.",
   onFormSubmit,

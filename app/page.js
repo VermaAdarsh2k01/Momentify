@@ -20,6 +20,8 @@ import ImageReveal from "./Components/ImageReveal/ImageReveal.jsx";
 import ProjectsSection from "./Components/ProjectsSection/ProjectsSection.jsx";
 import ServiceFlipGrid from "./Components/ServiceFlipGrid/ServiceFlipGrid.jsx";
 import ExpandableServicesSection from "./Components/ExpandableServicesSection/ExpandableServicesSection.jsx";
+import NewAbout from "./Components/AboutSection/NewAbout.jsx";
+import PricingCards from "./Components/PricingCards/PricingCards.jsx";
 
 export default function Home() {
   return (
@@ -27,7 +29,7 @@ export default function Home() {
       <Preloader />
       <ScrollHero />
       {/* OUTRO */}
-      {/* <AboutSection /> */}
+      {/* <NewAbout /> */}
       {/* <Hero />
       <TrailContainer /> */}
       {/* <Minimap/> */}
@@ -36,15 +38,15 @@ export default function Home() {
       <ServiceFlipGrid />
       {/* <StickyCards /> */}
       <Gallery />
+      <PricingCards />
       {/* <AboutSection /> */}
       {/* <Showcase/> */}
       {/* <MarqueeBanner /> */}
-      <OurProcess />
+      {/* <OurProcess /> */}
       <WhyChooseUs />
-
-      <Testimonials />
-      <CTABanner />
-      <FAQ />
+      {/* <Testimonials /> */}
+      {/* <CTABanner /> */}
+      {/* <FAQ /> */}
       {/* <ContactSectionNew /> */}
       {/* <ContactSection /> */}
     </div>

@@ -33,24 +33,6 @@ const Testimonials = () => {
   return (
     <section className="bg-gray-100 min-h-screen flex items-center py-20 lg:py-32" id="testimonials">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <Copy delay={0} type="slide">
-          <div className="text-center mb-16 lg:mb-24">
-            <h2 className="text-black text-5xl lg:text-7xl xl:text-8xl font-title leading-[1] mb-6">
-              Testimonials
-            </h2>
-            <div className="flex justify-center mb-8">
-              <img 
-                src="/highlight.svg" 
-                alt="Highlight decoration" 
-                className="w-40 h-auto lg:w-48 xl:w-56 invert"
-              />
-            </div>
-            <p className="text-black text-lg lg:text-xl font-body max-w-3xl mx-auto leading-relaxed">
-              Hear what our clients say about their unforgettable experiences with us
-            </p>
-          </div>
-        </Copy>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {testimonials.map((testimonial, index) => (
             <Copy key={testimonial.id} delay={index * 0.1} type="slide">

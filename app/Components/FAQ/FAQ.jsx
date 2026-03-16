@@ -46,24 +46,6 @@ const FAQ = () => {
   return (
     <section className="bg-white min-h-screen flex items-center py-20 lg:py-32">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 w-full">
-        <Copy delay={0} type="slide">
-          <div className="text-center mb-16 lg:mb-24">
-            <h2 className="text-black text-5xl lg:text-7xl xl:text-8xl font-title leading-[1] mb-6">
-              FAQ
-            </h2>
-            <div className="flex justify-center mb-8">
-              <img 
-                src="/highlight.svg" 
-                alt="Highlight decoration" 
-                className="w-40 h-auto lg:w-48 xl:w-56 invert"
-              />
-            </div>
-            <p className="text-black text-lg lg:text-xl font-body max-w-3xl mx-auto leading-relaxed">
-              Find answers to commonly asked questions about our services and process
-            </p>
-          </div>
-        </Copy>
-
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <Copy key={faq.id} delay={index * 0.1} type="slide">

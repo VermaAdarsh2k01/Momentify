@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { Monitor, Palette, BarChart2, Lightbulb, Megaphone, ShieldCheck, ChevronRight, Star , SendToBack } from "lucide-react";
 import Copy from "../TextAnimation/Copy";
+import TextBlock from "../TextBlock/TextBlock";
 
 const whyChooseUsFeatures = [
   {
@@ -45,24 +46,11 @@ const WhyChooseUs = () => {
       id="our-values"
     >
       <div className="max-w-5xl mx-auto px-6 lg:px-8 w-full">
-        <Copy delay={0} type="slide">
-          <div className="max-w-3xl mb-12 lg:mb-16">
-            <p className="text-xs font-medium text-gray-500 uppercase mb-3">
-              Why Choose Us
-            </p>
-            <Copy delay={0.5} type="slide">
-              <p className="text-black text-xl sm:text-4xl lg:text-4xl font-title mb-6">
-                Let us handle every detail so you can enjoy the moment.
-              </p>
-            </Copy>
-            <p className="text-gray-600 text-base lg:text-lg font-body">
-              From strategy and design to seamless execution, we create
-              experiences that feel effortless for you and unforgettable for
-              your guests.
-            </p>
-          </div>
-        </Copy>
-
+        <TextBlock
+          title="Why clients choose us"
+          body="See what sets us apart—from our creative process to the way we support you before, during, and after every project."
+          className="mb-16"
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:gap-y-14">
           {whyChooseUsFeatures.map((service, index) => (
             <Copy key={service.title} delay={index * 0.08} type="slide">

@@ -1,297 +1,88 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import "./About.css";
 import Copy from "../TextAnimation/Copy";
 
-const   TrailContainer = () => {
-  const trailContainerRef = useRef(null);
-  const animationStateRef = useRef(null);
-  const trailRef = useRef([]);
-  const currentImageIndexRef = useRef(0);
-  const mousePosRef = useRef({ x: 0, y: 0 });
-  const lastMousePosRef = useRef({ x: 0, y: 0 });
-  const interpolatedMousePosRef = useRef({ x: 0, y: 0 });
-  const isDesktopRef = useRef(false);
-
-  useEffect(() => {
-    const config = {
-      imageLifespan: 1000,
-      mouseThreshold: 150,
-      inDuration: 750,
-      outDuration: 1000,
-      staggerIn: 100,
-      staggerOut: 25,
-      slideDuration: 1000,
-      slideEasing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-      easing: "cubic-bezier(0.87, 0, 0.13, 1)",
-    };
-
-    const trailImageCount = 12;
-    
-    // Map each image to its actual file extension based on what exists
-    const getImagePath = (index) => {
-      const imageMap = {
-        1: '/trail-images/img1.jpg',
-        2: '/trail-images/img2.jpg', 
-        3: '/trail-images/img3.jpg', // This one is PNG
-        4: '/trail-images/img4.jpg',
-        5: '/trail-images/img5.jpg',
-        6: '/trail-images/img6.jpg',
-        7: '/trail-images/img1.jpg',
-        8: '/trail-images/img2.jpg',
-        9: '/trail-images/img3.jpg',
-        10: '/trail-images/img4.jpg',
-        11: '/trail-images/img5.jpg',
-        12: '/trail-images/img6.jpg',
-      };
-      
-      return imageMap[index] || `/trail-images/img${index}.jpg`; // fallback to jpeg
-    };
-    
-    const images = Array.from(
-      { length: trailImageCount },
-      (_, i) => getImagePath(i + 1)
-    );
-
-    const trailContainer = trailContainerRef.current;
-    if (!trailContainer) return;
-
-    isDesktopRef.current = window.innerWidth > 1000;
-
-    const MathUtils = {
-      lerp: (a, b, n) => (1 - n) * a + n * b,
-      distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
-    };
-
-    const getMouseDistance = () =>
-      MathUtils.distance(
-        mousePosRef.current.x,
-        mousePosRef.current.y,
-        lastMousePosRef.current.x,
-        lastMousePosRef.current.y
-      );
-
-    const isInTrailContainer = (x, y) => {
-      const rect = trailContainer.getBoundingClientRect();
-      return (
-        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
-      );
-    };
-
-    const createTrailImage = () => {
-      const imgContainer = document.createElement("div");
-      imgContainer.classList.add("trail-img");
-
-      const imgSrc = images[currentImageIndexRef.current];
-      currentImageIndexRef.current =
-        (currentImageIndexRef.current + 1) % trailImageCount;
-
-      const rect = trailContainer.getBoundingClientRect();
-      const startX = interpolatedMousePosRef.current.x - rect.left - 87.5;
-      const startY = interpolatedMousePosRef.current.y - rect.top - 87.5;
-      const targetX = mousePosRef.current.x - rect.left - 87.5;
-      const targetY = mousePosRef.current.y - rect.top - 87.5;
-
-      imgContainer.style.left = `${startX}px`;
-      imgContainer.style.top = `${startY}px`;
-      imgContainer.style.transition = `left ${config.slideDuration}ms ${config.slideEasing}, top ${config.slideDuration}ms ${config.slideEasing}`;
-
-      const maskLayers = [];
-      const imageLayers = [];
-      for (let i = 0; i < 10; i++) {
-        const layer = document.createElement("div");
-        layer.classList.add("mask-layer");
-
-        const imageLayer = document.createElement("div");
-        imageLayer.classList.add("image-layer");
-        imageLayer.style.backgroundImage = `url(${imgSrc})`;
-
-        const startY = i * 10;
-        const endY = (i + 1) * 10;
-
-        layer.style.clipPath = `polygon(50% ${startY}%, 50% ${startY}%, 50% ${endY}%, 50% ${endY}%)`;
-        layer.style.transition = `clip-path ${config.inDuration}ms ${config.easing}`;
-        layer.style.transform = "translateZ(0)";
-        layer.style.backfaceVisibility = "hidden";
-
-        layer.appendChild(imageLayer);
-        imgContainer.appendChild(layer);
-        maskLayers.push(layer);
-        imageLayers.push(imageLayer);
-      }
-
-      trailContainer.appendChild(imgContainer);
-
-      requestAnimationFrame(() => {
-        imgContainer.style.left = `${targetX}px`;
-        imgContainer.style.top = `${targetY}px`;
-
-        maskLayers.forEach((layer, i) => {
-          const startY = i * 10;
-          const endY = (i + 1) * 10;
-          const distanceFromMiddle = Math.abs(i - 4.5);
-          const delay = distanceFromMiddle * config.staggerIn;
-
-          setTimeout(() => {
-            layer.style.clipPath = `polygon(0% ${startY}%, 100% ${startY}%, 100% ${endY}%, 0% ${endY}%)`;
-          }, delay);
-        });
-      });
-
-      trailRef.current.push({
-        element: imgContainer,
-        maskLayers: maskLayers,
-        imageLayers: imageLayers,
-        removeTime: Date.now() + config.imageLifespan,
-      });
-    };
-
-    const removeOldImages = () => {
-      const now = Date.now();
-      if (trailRef.current.length === 0) return;
-
-      const oldestImage = trailRef.current[0];
-      if (now >= oldestImage.removeTime) {
-        const imgToRemove = trailRef.current.shift();
-
-        imgToRemove.maskLayers.forEach((layer, i) => {
-          const startY = i * 10;
-          const endY = (i + 1) * 10;
-          const distanceFromEdge = 4.5 - Math.abs(i - 4.5);
-          const delay = distanceFromEdge * config.staggerOut;
-
-          layer.style.transition = `clip-path ${config.outDuration}ms ${config.easing}`;
-
-          setTimeout(() => {
-            layer.style.clipPath = `polygon(50% ${startY}%, 50% ${startY}%, 50% ${endY}%, 50% ${endY}%)`;
-          }, delay);
-        });
-
-        imgToRemove.imageLayers.forEach((imageLayer) => {
-          imageLayer.style.transition = `opacity ${config.outDuration}ms ${config.easing}`;
-          imageLayer.style.opacity = "0.25";
-        });
-
-        setTimeout(() => {
-          if (imgToRemove.element.parentNode) {
-            imgToRemove.element.parentNode.removeChild(imgToRemove.element);
-          }
-        }, config.outDuration + 112);
-      }
-    };
-
-    const render = () => {
-      if (!isDesktopRef.current) return;
-
-      const distance = getMouseDistance();
-
-      interpolatedMousePosRef.current.x = MathUtils.lerp(
-        interpolatedMousePosRef.current.x || mousePosRef.current.x,
-        mousePosRef.current.x,
-        0.1
-      );
-      interpolatedMousePosRef.current.y = MathUtils.lerp(
-        interpolatedMousePosRef.current.y || mousePosRef.current.y,
-        mousePosRef.current.y,
-        0.1
-      );
-
-      if (
-        distance > config.mouseThreshold &&
-        isInTrailContainer(mousePosRef.current.x, mousePosRef.current.y)
-      ) {
-        createTrailImage();
-        lastMousePosRef.current = { ...mousePosRef.current };
-      }
-
-      removeOldImages();
-      animationStateRef.current = requestAnimationFrame(render);
-    };
-
-    const startAnimation = () => {
-      if (!isDesktopRef.current) return;
-
-      const handleMouseMove = (e) => {
-        mousePosRef.current = { x: e.clientX, y: e.clientY };
-      };
-
-      document.addEventListener("mousemove", handleMouseMove);
-      animationStateRef.current = requestAnimationFrame(render);
-
-      return () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-      };
-    };
-
-    const stopAnimation = () => {
-      if (animationStateRef.current) {
-        cancelAnimationFrame(animationStateRef.current);
-        animationStateRef.current = null;
-      }
-
-      trailRef.current.forEach((item) => {
-        if (item.element.parentNode) {
-          item.element.parentNode.removeChild(item.element);
-        }
-      });
-      trailRef.current.length = 0;
-    };
-
-    const handleResize = () => {
-      const wasDesktop = isDesktopRef.current;
-      isDesktopRef.current = window.innerWidth > 1000;
-
-      if (isDesktopRef.current && !wasDesktop) {
-        cleanUpMouseListener = startAnimation();
-      } else if (!isDesktopRef.current && wasDesktop) {
-        stopAnimation();
-        if (cleanUpMouseListener) {
-          cleanUpMouseListener();
-        }
-      }
-    };
-
-    let cleanUpMouseListener = null;
-
-    window.addEventListener("resize", handleResize);
-
-    if (isDesktopRef.current) {
-      cleanUpMouseListener = startAnimation();
-    }
-
-    return () => {
-      stopAnimation();
-      if (cleanUpMouseListener) {
-        cleanUpMouseListener();
-      }
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+const TrailContainer = () => {
   return (
-    <section className="about-trail-section">
-      <div ref={trailContainerRef} className="trail-container">
-        <div className="background-text flex flex-col gap-20 lg:gap-28">
+    <section className="w-full min-h-screen bg-[#e3e3db]">
+      <div className="relative z-10 max-w-5xl lg:max-w-6xl mx-auto px-6 lg:px-10 py-16 lg:py-24">
+        <Copy delay={0} type="slide">
+          <div className="text-[1.9rem] sm:text-[2.2rem] lg:text-[2.7rem] text-[#111] max-w-5xl font-body">
+            <p className="font-body">
+              Since 2016, we're a team of all in all{" "}
+              <span className="italic">experienced</span>{" "}
+              consultations, <span className="font-semibold">combine</span> for
+              strategic instant.
+            </p>
+          </div>
+        </Copy>
+
+        <div className="mt-2 flex flex-col md:flex-row gap-8 lg:gap-10 items-start">
+          {/* LEFT COLUMN (DESCRIPTION + STAT) */}
+          <div className="flex flex-col justify-between gap-8 h-full">
             <Copy delay={0} type="slide">
-                <div className="text-center">
-                    <p className="text-black text-6xl font-title leading-[1] lg:text-[6rem]">
-                    About Us
-                    </p>
-                    <div className="flex justify-center">
-                        <img 
-                            src="/highlight.svg" 
-                            alt="Highlight decoration" 
-                            className="w-40 h-auto lg:w-48 xl:w-42"
-                        />
-                    </div>
-                </div>
-            </Copy>
-            <Copy delay={0} type="slide">
-                <p className="max-w-[1000px] mx-auto text-center text-black text-xl font-body leading-[1] lg:text-[1.5rem]">
-                At Momentify, we believe every event is more than an occasion—it’s a masterpiece of emotions, culture, and memories. We are a luxury end-to-end event management company dedicated to designing extraordinary experiences that feel personal, elegant, and unforgettable.
+              <div className="">
+                <p className="text-[0.95rem] sm:text-[1rem] text-body text-[#444] max-w-md">
+                  At Momentify, we help businesses navigate complexity, unlock
+                  growth, and achieve lasting transformation with a team of
+                  experienced consultants. We combine strategic thinking with
+                  precise execution to design experiences that move brands and
+                  people forward.
                 </p>
+              </div>
             </Copy>
+
+          <div className="flex items-center justify-center">
+            <div>
+              <div className="flex items-end gap-4 mt-2">
+                <div className="text-[2.2rem] sm:text-[2.6rem] font-body text-[#111]">
+                  150+
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[0.78rem] uppercase tracking-[0.16em] text-[#222]">
+                    Successful Projects Delivered
+                  </p>
+                  <p className="text-[0.9rem] text-[#666] max-w-xs">
+                    Across industries and markets, pairing insight with impact.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CENTER IMAGE */}
+          <Copy delay={0.15} type="slide">
+            <div className="rounded-3xl overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.18)] bg-[#111] translate-y-2 max-w-sm mx-auto lg:mx-0">
+              <img
+                src="/owner.webp"
+                alt="Momentify team"
+                className="w-full h-full max-h-[360px] object-cover"
+              />
+            </div>
+          </Copy>
+
+          {/* RIGHT CTA CARD */}
+          <Copy delay={0.2} type="slide">
+            <div className="bg-white rounded-3xl px-6 py-6 flex flex-col justify-between gap-6 shadow-[0_18px_40px_rgba(10,10,10,0.16)] max-w-xs mx-auto lg:mx-0">
+              <div className="flex flex-col gap-4">
+                <span className="w-3 h-3 rounded-full bg-[#2d4bff] shadow-[0_0_0_6px_rgba(45,75,255,0.2)]" />
+                <ul className="space-y-2 text-[0.95rem] text-[#1e1e1e]">
+                  <li>Strategic Planning</li>
+                  <li>Operational Excellence</li>
+                  <li>Market Expansion</li>
+                  <li>Risk Management</li>
+                </ul>
+              </div>
+
+              <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-none bg-gradient-to-tr from-[#1b3dff] to-[#5a5dff] text-white text-[0.93rem] font-semibold shadow-[0_14px_32px_rgba(31,56,255,0.45)] hover:shadow-[0_18px_40px_rgba(31,56,255,0.55)] hover:from-[#1531d9] hover:to-[#4a4dde] transition-all duration-150 ease-out self-start">
+                <span>Book a Free Call</span>
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black/20 text-[0.8rem]">
+                  ↗
+                </span>
+              </button>
+            </div>
+          </Copy>
+        </div>
         </div>
       </div>
     </section>

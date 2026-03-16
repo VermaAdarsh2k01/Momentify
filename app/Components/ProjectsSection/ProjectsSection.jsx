@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { portfolioItems } from '../../services/servicesData';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { portfolioItems } from "../../services/servicesData";
+import TextBlock from "../TextBlock/TextBlock";
 
 // Map portfolio data (same as ImageReveal) to carousel format
 const projects = portfolioItems.map((item, i) => ({
@@ -10,7 +11,7 @@ const projects = portfolioItems.map((item, i) => ({
   image: item.mediaUrl,
   title: item.title,
   description: item.description,
-  aspectClass: i % 2 === 0 ? 'aspect-[4/3]' : 'aspect-[3/4]',
+  aspectClass: i % 2 === 0 ? "aspect-[4/3]" : "aspect-[3/4]",
 }));
 
 const CARD_WIDTH = 320;
@@ -33,7 +34,7 @@ export default function ProjectsSection() {
       {
         x: -totalWidth,
         duration: 20,
-        ease: 'none',
+        ease: "none",
         repeat: -1,
       }
     );
@@ -48,15 +49,11 @@ export default function ProjectsSection() {
 
   return (
     <section className="py-16 flex flex-col justify-between min-h-[100svh]">
-      <div className="grid grid-cols-2 gap-6 items-start mb-24 max-w-5xl mx-auto ">
-        <span className="text-2xl font-title text-[#8F1B32] tracking-wide pt-1">
-          Discover Our Event Services
-        </span>
-        <p className="text-base font-semibold text-gray-900 leading-snug tracking-tight">
-          From intimate gatherings to large-scale experiences, we handle concept, planning, production, and on-the-day coordination so your events run flawlessly and feel unforgettable.
-        </p>
-      </div>
-
+      <TextBlock
+        title="Our recent projects"
+        body="Explore a selection of recent work that showcases how we capture and elevate meaningful moments for our clients."
+        className="mb-16"
+      />
       <div className="overflow-hidden w-full">
         <div
           ref={trackRef}

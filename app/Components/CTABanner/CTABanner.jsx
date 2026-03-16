@@ -61,20 +61,6 @@ const CTABanner = () => {
       className="bg-[#8F1B32] min-h-screen flex items-center py-20 lg:py-32"
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center w-full">
-        <h2 
-          ref={titleRef}
-          className="text-white text-4xl lg:text-6xl xl:text-7xl font-title leading-[1] mb-6"
-        >
-          Ready to Create Your Perfect Event?
-        </h2>
-        
-        <p 
-          ref={textRef}
-          className="text-white text-lg lg:text-xl font-body mb-12 leading-relaxed max-w-2xl mx-auto"
-        >
-          Let's bring your vision to life. Contact us today for a personalized consultation and start planning your unforgettable celebration.
-        </p>
-        
         <div 
           ref={buttonsRef}
           className="flex flex-col sm:flex-row gap-6 justify-center"
