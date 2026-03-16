@@ -40,65 +40,49 @@ const whyChooseUsFeatures = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="bg-white min-h-screen flex items-center py-20 lg:py-32" id="our-values">
+    <section
+      className="bg-white py-20 lg:py-28 border-t border-gray-100"
+      id="our-values"
+    >
       <div className="max-w-5xl mx-auto px-6 lg:px-8 w-full">
         <Copy delay={0} type="slide">
-          <div className="text-center mb-16 lg:mb-24">
-            <h2 className="text-black text-4xl lg:text-5xl xl:text-6xl font-title font-bold leading-tight mb-4">
-              Our Comprehensive Services
-            </h2>
-            <p className="text-gray-600 text-lg font-body max-w-2xl mx-auto leading-relaxed">
-              Discover what sets us apart in creating extraordinary events and unforgettable experiences
+          <div className="max-w-3xl mb-12 lg:mb-16">
+            <p className="text-xs font-medium text-gray-500 uppercase mb-3">
+              Why Choose Us
+            </p>
+            <Copy delay={0.5} type="slide">
+              <p className="text-black text-xl sm:text-4xl lg:text-4xl font-title mb-6">
+                Let us handle every detail so you can enjoy the moment.
+              </p>
+            </Copy>
+            <p className="text-gray-600 text-base lg:text-lg font-body">
+              From strategy and design to seamless execution, we create
+              experiences that feel effortless for you and unforgettable for
+              your guests.
             </p>
           </div>
         </Copy>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {whyChooseUsFeatures.map((service, index) => (
-          <div
-            key={index}
-            className={`rounded-2xl p-6 flex flex-col justify-between border transition-all duration-200 group ${
-              service.highlight
-                ? "bg-[#8F1B32] text-white border-blue-600"
-                : "bg-white text-gray-900 border-gray-200 hover:border-gray-300 hover:shadow-sm"
-            }`}
-          >
-            <div>
-              <div
-                className={`mb-4 ${
-                  service.highlight ? "text-white" : "text-gray-800"
-                }`}
-              >
-                {service.icon}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:gap-y-14">
+          {whyChooseUsFeatures.map((service, index) => (
+            <Copy key={service.title} delay={index * 0.08} type="slide">
+              <div className="flex items-start gap-4 w-fit">
+                <div className="shrink-0 ">
+                  <div className="h-11 w-11 rounded-xl bg-[#8F1B32] text-white flex items-center justify-center shadow-lg">
+                    {service.icon}
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1.5 leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 ">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <h3
-                className={`text-base font-semibold mb-2 leading-snug ${
-                  service.highlight ? "text-white" : "text-gray-900"
-                }`}
-              >
-                {service.title}
-              </h3>
-              <p
-                className={`text-sm leading-relaxed ${
-                  service.highlight ? "text-blue-100" : "text-gray-500"
-                }`}
-              >
-                {service.description}
-              </p>
-            </div>
-            {/* <div className="mt-6">
-              <button
-                className={`flex items-center gap-1 text-sm font-medium transition-all duration-150 ${
-                  service.highlight
-                    ? "text-white hover:gap-2"
-                    : "text-gray-700 hover:text-blue-600 hover:gap-2"
-                }`}
-              >
-                See details <ChevronRight size={14} />
-              </button>
-            </div> */}
-          </div>
-        ))}
+            </Copy>
+          ))}
         </div>
       </div>
     </section>

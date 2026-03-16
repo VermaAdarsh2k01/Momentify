@@ -124,7 +124,7 @@ export default function WaabiScrollAnimation() {
   }, []);
 
   return (
-    <main className="bg-[#e3e3db] font-[Inter,sans-serif]">
+    <main className="bg-[#ffffff] font-[Inter,sans-serif]">
       {/* HERO */}
       <section className="hero relative w-full h-[100svh]">
         <div

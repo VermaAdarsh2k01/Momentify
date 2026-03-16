@@ -166,7 +166,8 @@ const Preloader = () => {
             h-[3.25rem]
             bg-neutral-300
             origin-left
-            will-change-transform
+            will-change-transform 
+            rounded-2xl
           `}
           style={{ transform: "translate(-50%, -50%) scaleX(0)" }}
         />
