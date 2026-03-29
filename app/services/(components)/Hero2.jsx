@@ -22,8 +22,8 @@ const Hero2 = () => {
           </Copy>
         </div>
         <div className="relative mt-24 pt-4 rounded-2xl">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-20 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-20 bg-gradient-to-l from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-20 hidden md:block bg-gradient-to-r from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-20 hidden md:block bg-gradient-to-l from-white to-transparent" />
           <Marquee speed={30} />
         </div>
       </div>

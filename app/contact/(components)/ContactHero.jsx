@@ -58,25 +58,44 @@ const ContactHero = () => {
 
           {/* Right — quick-contact pills */}
           <div className="w-full md:w-[40%] flex flex-col gap-4">
-            <a
-              href="tel:+13034191999"
-              className="flex flex-col bg-[#f2f2f0] rounded-2xl px-5 py-5 hover:bg-[#eaeae7] transition-colors"
-            >
-              <Copy delay={0.5} type="slide" animateOnScroll={false}>
-                <div className="h-10 w-10 rounded-lg bg-[#8F1B32] text-white flex items-center justify-center mb-3 shadow-md shadow-[#8F1B32]/30">
-                  <Phone size={18} strokeWidth={1.5} />
-                </div>
-              </Copy>
-              <Copy delay={0.7} type="slide" animateOnScroll={false}>
-                <p className="font-body text-xs text-neutral-400 uppercase tracking-widest mb-1">
-                  Phone
+            <div className="grid grid-cols-2 gap-4">
+              <a
+                href="tel:3034191999"
+                className="flex flex-col bg-[#f2f2f0] rounded-2xl px-5 py-5 hover:bg-[#eaeae7] transition-colors"
+              >
+                <Copy delay={0.5} type="slide" animateOnScroll={false}>
+                  <div className="h-10 w-10 rounded-lg bg-[#8F1B32] text-white flex items-center justify-center mb-3 shadow-md shadow-[#8F1B32]/30">
+                    <Phone size={18} strokeWidth={1.5} />
+                  </div>
+                </Copy>
+                <Copy delay={0.7} type="slide" animateOnScroll={false}>
+                  <p className="font-body text-xs text-neutral-400 uppercase tracking-widest mb-1">
+                    Phone
                   </p>
                 </Copy>
                 <Copy delay={0.8} type="slide" animateOnScroll={false}>
-                  <p className="font-body text-sm text-black">+1 303 419 1999</p>
+                  <p className="font-body text-sm text-black">303 419 1999</p>
                 </Copy>
-              
-            </a>
+              </a>
+              <a
+                href="tel:3039951927"
+                className="flex flex-col bg-[#f2f2f0] rounded-2xl px-5 py-5 hover:bg-[#eaeae7] transition-colors"
+              >
+                <Copy delay={0.5} type="slide" animateOnScroll={false}>
+                  <div className="h-10 w-10 rounded-lg bg-[#8F1B32] text-white flex items-center justify-center mb-3 shadow-md shadow-[#8F1B32]/30">
+                    <Phone size={18} strokeWidth={1.5} />
+                  </div>
+                </Copy>
+                <Copy delay={0.7} type="slide" animateOnScroll={false}>
+                  <p className="font-body text-xs text-neutral-400 uppercase tracking-widest mb-1">
+                    Phone
+                  </p>
+                </Copy>
+                <Copy delay={0.8} type="slide" animateOnScroll={false}>
+                  <p className="font-body text-sm text-black">303 995 1927</p>
+                </Copy>
+              </a>
+            </div>
             <a
               href="mailto:contact@momentifyevents.com"
               className="flex flex-col bg-[#f2f2f0] rounded-2xl px-5 py-5 hover:bg-[#eaeae7] transition-colors"

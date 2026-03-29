@@ -40,7 +40,11 @@ const Footer = () => {
           <div>
             <h3 className="font-title text-3xl mb-5">Contact Us</h3>
             <p className="font-body text-white/90 mb-4">contact@momentifyevents.com</p>
-            <p className="font-body text-white/90 mb-6">+1 303 419 1999</p>
+            <div className="flex flex-row gap-4 mb-6">
+              <p className="font-body text-white/90">+1 303 995 1927</p>
+              <span className="text-white/40">|</span>
+              <p className="font-body text-white/90">+1 303 419 1999</p>
+            </div>
             <Link
               href="/contact"
               className="inline-flex items-center rounded-full border border-white px-6 py-3 font-body text-sm tracking-wide hover:bg-white hover:text-[#8F1B32] transition-all duration-300"
