@@ -2,135 +2,54 @@
 
 import React from 'react';
 
-const Marquee = ({ 
-  images = [], 
-  speed = 20, 
+const Marquee = ({
+  images = [],
+  speed = 20,
   direction = 'left',
-  className = '',
-  imageClassName = '',
-  pauseOnHover = true 
+  pauseOnHover = true,
 }) => {
-  // Default images if none provided
   const defaultImages = [
-    '/services/wedding.jpg',
+    '/services/wedding.webp',
     '/services/corporate.jpg',
-    '/services/social.jpg',
-    '/services/cultural.jpg',
-    '/services/babyshower.jpg',
-    '/services/holiday.jpg',
     '/services/music.jpg',
+    '/services/social.jpg',
+    '/services/babyshower.jpg',
+    '/services/cultural.webp',
+    '/services/holiday.webp',
+    '/services/wedding-2.jpeg',
   ];
 
   const imagesToUse = images.length > 0 ? images : defaultImages;
 
+  const animationName = direction === 'left' ? 'marquee-left' : 'marquee-right';
+
   return (
-    <div className={`marquee-container ${className}`}>
-      <div 
-        className={`marquee-content ${pauseOnHover ? 'pause-on-hover' : ''}`}
-        style={{
-          '--speed': `${speed}s`,
-          '--direction': direction === 'left' ? 'scroll-left' : 'scroll-right'
-        }}
+    <div className="w-full overflow-hidden pb-1">
+      {/* Keyframes can't be expressed as Tailwind classes */}
+      <style>{`
+        @keyframes marquee-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+      `}</style>
+
+      <div
+        className={`inline-flex items-end gap-3 will-change-transform ${pauseOnHover ? 'hover:[animation-play-state:paused]' : ''}`}
+        style={{ animation: `${animationName} ${speed}s linear infinite` }}
       >
-        {/* First set of images */}
-        {imagesToUse.map((src, index) => (
+        {[...imagesToUse, ...imagesToUse].map((src, i) => (
           <img
-            key={`first-${index}`}
-            src={src}
-            alt={`Marquee image ${index + 1}`}
-            className={`marquee-image ${imageClassName}`}
-          />
-        ))}
-        
-        {/* Duplicate set for seamless loop */}
-        {imagesToUse.map((src, index) => (
-          <img
-            key={`second-${index}`}
-            src={src}
-            alt={`Marquee image ${index + 1}`}
-            className={`marquee-image ${imageClassName}`}
+            key={i}
+            src={typeof src === 'string' ? src : src.src}
+            alt=""
+            className="w-[220px] max-w-none h-auto shrink-0 block rounded-[10px] md:w-[200px] sm:w-[160px]"
           />
         ))}
       </div>
-
-      <style jsx>{`
-        .marquee-container {
-          width: 100%;
-          overflow: hidden;
-          white-space: nowrap;
-          background: #f8f9fa;
-          border: 1px solid #e9ecef;
-          border-radius: 8px;
-        }
-
-        .marquee-content {
-          display: inline-flex;
-          animation: var(--direction) var(--speed) linear infinite;
-          gap: 20px;
-          padding: 20px 0;
-        }
-
-        .marquee-content.pause-on-hover:hover {
-          animation-play-state: paused;
-        }
-
-        .marquee-image {
-          height: 120px;
-          width: 200px;
-          object-fit: cover;
-          border-radius: 6px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease;
-          flex-shrink: 0;
-        }
-
-        .marquee-image:hover {
-          transform: scale(1.05);
-        }
-
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes scroll-right {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-          .marquee-image {
-            height: 320px;
-            width: 200px;
-          }
-          
-          .marquee-content {
-            gap: 15px;
-            padding: 15px 0;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .marquee-image {
-            height: 100px;
-            width: 160px;
-          }
-          
-          .marquee-content {
-            gap: 10px;
-            padding: 10px 0;
-          }
-        }
-      `}</style>
     </div>
   );
 };

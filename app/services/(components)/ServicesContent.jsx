@@ -1,143 +1,80 @@
-"use client";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import CardFlip from "@/components/kokonutui/card-flip";
-import ContactSection from "@/app/Components/ContactSection/ContactSection";
+import Image from "next/image";
+import Copy from "../../Components/TextAnimation/Copy";
 import { portfolioItems } from "../servicesData";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const ServicesContent = () => {
-  const portfolioRef = useRef(null);
-  const highlightsRef = useRef(null);
-
-  useEffect(() => {
-    // Portfolio cards animation
-    gsap.fromTo(
-      ".portfolio-card",
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: portfolioRef.current,
-          start: "top 80%",
-        },
-      }
-    );
-
-    // Highlights animation
-    gsap.fromTo(
-      ".highlight-item",
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: highlightsRef.current,
-          start: "top 80%",
-        },
-      }
-    );
-  }, []);
-
-  const highlights = [
-    {
-      id: 1,
-      image: "/api/placeholder/200/200",
-      title: "Gourmet Catering",
-      description: "Exquisite culinary experiences"
-    },
-    {
-      id: 2,
-      image: "/api/placeholder/200/200",
-      title: "Pesto Chicken Salad",
-      description: "Fresh and flavorful"
-    },
-    {
-      id: 3,
-      image: "/api/placeholder/200/200",
-      title: "Premium Desserts",
-      description: "Sweet endings to perfect events"
-    },
-    {
-      id: 4,
-      image: "/api/placeholder/200/200",
-      title: "Artisan Appetizers",
-      description: "Beautifully crafted starters"
-    }
-  ];
-
   return (
-    <>
-      {/* Services Section */}
-      <section className="py-20 bg-[#8F1B32]" ref={portfolioRef}>
-        <div className="max-w-6xl mx-auto px-5">
+    <section className="bg-white py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-6 md:px-14">
 
-          <div className="grid grid-cols-1 gap-6 lg:gap-8">
-            {portfolioItems.map((item) => (
-              <div key={item.id} className="portfolio-card flex justify-center">
-                <CardFlip
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  description={item.description}
-                  features={item.features}
-                  mediaUrl={item.mediaUrl}
-                  mediaType={item.mediaType}
-                  scale={false}
-                />
-              </div>
-            ))}
-          </div>
+        {/* ── Section header ── */}
+        <div className="flex flex-col items-center mb-20">
+          <Copy>
+            <span className="font-body text-xs tracking-[0.18em] border border-gray-300 rounded-full px-5 py-1.5 text-gray-600 mb-6 uppercase inline-block">
+              Services
+            </span>
+          </Copy>
+          <Copy>
+            <h2 className="font-body text-2xl md:text-3xl text-black text-center max-w-xl leading-tight">
+              Explore the Events We Bring to Life
+            </h2>
+          </Copy>
         </div>
-      </section>
 
-      {/* Highlights Section */}
-      {/* <section className="py-20 bg-[#faf9f6]" ref={highlightsRef}>
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#2c2c2c] mb-4 tracking-tight">Highlights That Define Excellence</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Every detail matters in creating extraordinary experiences that leave lasting impressions
-            </p>
-          </div>
+        {portfolioItems.map((item) => (
+          <div key={item.id} id={item.id} className="group pt-8 pb-14 md:pb-20 scroll-mt-24">
+            {/* Top divider */}
+            <div className="h-px bg-neutral-300 mb-8 md:mb-10" />
 
-          <div className="grid grid-cols-1 gap-6 lg:gap-8 mt-10">
-            {highlights.map((highlight) => (
-              <div 
-                key={highlight.id} 
-                className="highlight-item bg-white rounded-2xl p-6 lg:p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className="mb-5">
+            {/* Three-column layout */}
+            <div className="grid grid-cols-1 md:grid-cols-[1.2fr_2.5fr_2.5fr] gap-10 md:gap-16 items-start">
+
+              {/* Left: title */}
+              <div>
+                <Copy>
+                  <h3 className="font-title text-base md:text-2xl text-[#8F1B32] leading-snug">
+                    {item.title}
+                  </h3>
+                </Copy>
+              </div>
+
+              {/* Middle: description + features */}
+              <div className="flex flex-col gap-5">
+                <Copy>
+                  <p className="text-sm md:text-lg text-neutral-600 max-w-sm font-body">
+                    {item.description}
+                  </p>
+                </Copy>
+                <ul className="flex flex-col gap-1">
+                  {item.features.map((feat) => (
+                    <li key={feat} className="flex items-center gap-2 text-base text-black tracking-wide">
+                      <Image src="/dot-icons.png" alt="" width={12} height={12} className="shrink-0" />
+                      <Copy delay={0.1} type="slide">
+                        <span className="inline-block">{feat}</span>
+                      </Copy>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Right: image */}
+              <div className="overflow-hidden rounded-2xl">
+                <div className="relative w-full aspect-4/3 overflow-hidden rounded-2xl">
                   <Image
-                    src={highlight.image}
-                    alt={highlight.title}
-                    width={120}
-                    height={120}
-                    className="w-28 h-36 lg:w-32 lg:h-32 rounded-xl object-cover mx-auto"
+                    src={item.mediaUrl}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-2">
-                  <h4 className="text-lg lg:text-xl font-bold text-[#2c2c2c]">{highlight.title}</h4>
-                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">{highlight.description}</p>
-                </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section> */}
-
-      {/* CTA Section */}
-      <ContactSection/>
-    </>
+        ))}
+      </div>
+    </section>
   );
-}
+};
 
 export default ServicesContent;

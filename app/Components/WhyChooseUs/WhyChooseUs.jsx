@@ -1,16 +1,13 @@
 "use client";
 import React from "react";
-import Link from "next/link";
-import { Monitor, Palette, BarChart2, Lightbulb, Megaphone, ShieldCheck, ChevronRight, Star , SendToBack } from "lucide-react";
+import { Monitor, Lightbulb, Megaphone, ShieldCheck, Star, SendToBack } from "lucide-react";
 import Copy from "../TextAnimation/Copy";
-import TextBlock from "../TextBlock/TextBlock";
 
 const whyChooseUsFeatures = [
   {
     title: "Luxury Experience",
     description: "We specialize in creating high-end, sophisticated events that reflect your unique style and vision.",
     icon: <Monitor size={28} strokeWidth={1.5} />,
-    highlight: true,
   },
   {
     title: "End-to-End Service",
@@ -41,37 +38,42 @@ const whyChooseUsFeatures = [
 
 const WhyChooseUs = () => {
   return (
-    <section
-      className="bg-white py-20 lg:py-28 border-t border-gray-100"
-      id="our-values"
-    >
-      <div className="max-w-5xl mx-auto px-6 lg:px-8 w-full">
-        <TextBlock
-          title="Why clients choose us"
-          body="See what sets us apart—from our creative process to the way we support you before, during, and after every project."
-          className="mb-16"
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:gap-y-14">
-          {whyChooseUsFeatures.map((service, index) => (
-            <Copy key={service.title} delay={index * 0.08} type="slide">
-              <div className="flex items-start gap-4 w-fit">
-                <div className="shrink-0 ">
-                  <div className="h-11 w-11 rounded-xl bg-[#8F1B32] text-white flex items-center justify-center shadow-lg">
-                    {service.icon}
-                  </div>
+    <section className="w-screen bg-white py-24 px-4" id="our-values">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Section header */}
+        <div className="flex flex-col items-center mb-16">
+          <span className="font-body text-xs tracking-[0.18em] border border-gray-300 rounded-full px-5 py-1.5 text-gray-600 mb-6 uppercase">
+            Why Us
+          </span>
+          <Copy delay={0.5} type="slide">
+            <p className="font-body text-2xl text-black text-center max-w-lg">
+              From our creative process to every last detail — here's what sets us apart and keeps our clients coming back.
+            </p>
+          </Copy>
+        </div>
+
+        {/* Features grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {whyChooseUsFeatures.map((feature, index) => (
+            <Copy key={feature.title} delay={index * 0.08} type="slide">
+              <div className="bg-[#f2f2f0] rounded-2xl p-6 flex flex-col gap-4 h-full">
+                <div className="h-11 w-11 rounded-xl bg-[#8F1B32] shadow-md shadow-[#8F1B32]/30 text-white flex items-center justify-center">
+                  {feature.icon}
                 </div>
-                <div className="mt-6">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1.5 leading-snug">
-                    {service.title}
+                <div>
+                  <h3 className="font-body text-sm font-semibold text-black mb-1.5 leading-snug">
+                    {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-600 ">
-                    {service.description}
+                  <p className="font-body text-sm text-gray-500">
+                    {feature.description}
                   </p>
                 </div>
               </div>
             </Copy>
           ))}
         </div>
+
       </div>
     </section>
   );

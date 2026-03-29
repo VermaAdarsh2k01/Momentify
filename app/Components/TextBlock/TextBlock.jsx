@@ -9,9 +9,9 @@ import React from "react";
  *   body="We attended the Forward Festival in Berlin, a conference focused on design, creativity, and culture. It offered space to step back, listen, and recalibrate our thinking."
  * />
  */
-const TextBlock = ({ title, body, className = "" }) => {
+const TextBlock = ({ title, body, className = "", marginBottom = "mb-24" }) => {
   return (
-    <section className={`w-full mb-24 px-6 md:px-8 max-w-5xl mx-auto ${className}`}>
+    <section className={`w-full ${marginBottom} px-6 md:px-8 max-w-5xl mx-auto ${className}`}>
       <h2 className="font-title text-[28px] leading-tight tracking-tight text-foreground">
         {title}
       </h2>

@@ -23,6 +23,7 @@ export default function LenisProvider({
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
+      anchors: true,
     });
 
     // Make available globally

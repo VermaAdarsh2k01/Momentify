@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "./Providers/LenisProvider";
 import Navbar from "./Components/Navbar/Navbar";
-import { Koulen, DM_Mono, Host_Grotesk } from "next/font/google";
+import { Koulen, DM_Mono, Host_Grotesk, Inter } from "next/font/google";
 import { Provider } from "../components/ui/provider";
 import Footer from "./Components/Footer/Footer";
 
@@ -25,6 +25,12 @@ const dmMono = DM_Mono({
   variable: "--font-dm-mono",
 });
 
+const inter = Inter({
+  weight: ["300", "400", "500", "600", "700" ,"800" ,"900"],
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
 export const metadata = {
   title: "Momentify Events",
   description: "Creating memories",
@@ -38,7 +44,7 @@ export default function RootLayout({ children }) {
       </head>
       <body
         suppressHydrationWarning
-        className={`${koulen.variable} ${hostGrotesk.variable} ${dmMono.variable} antialiased`}
+        className={`${koulen.variable} ${hostGrotesk.variable} ${dmMono.variable} ${inter.variable} antialiased`}
       >
         <Navbar />
         <LenisProvider>

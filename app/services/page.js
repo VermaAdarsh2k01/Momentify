@@ -1,5 +1,9 @@
 import Hero2 from "./(components)/Hero2";
 import ServicesContent from "./(components)/ServicesContent";
+import ExtraServices from "./(components)/ExtraServices";
+import PackagesSection from "../sections/PackagesSection";
+import WhyChooseUs from "../Components/WhyChooseUs/WhyChooseUs";
+import ContactFAQ from "../contact/(components)/ContactFAQ";
 
 const ServicesPage = () => {
   return (
@@ -7,9 +11,14 @@ const ServicesPage = () => {
       {/* Hero Section */}
       {/* <Hero /> */}
       <Hero2 />
+      
       {/* <ImageReveal/> */}
-      {/* Services Content */}
+      {/* Services Content */}  
       <ServicesContent />
+      <ExtraServices />
+      <PackagesSection />
+      <WhyChooseUs />
+      <ContactFAQ />
     </div>
   );
 };

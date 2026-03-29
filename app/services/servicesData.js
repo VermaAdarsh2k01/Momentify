@@ -43,7 +43,7 @@ export const portfolioItems = [
     features: ["Mundan Ceremony", "Housewarming", "Festivals & Community Celebrations", "Prayer Meetings & Spiritual Gatherings", "Milestone Religious Ceremonies", "Custom Rituals & Traditions", "Quinceanera"],
     category: "Cultural & Religious",
     link: "#",
-    mediaUrl: "/services/cultural.jpg",
+    mediaUrl: "/services/cultural.webp",
     mediaType: "image"
   },
   {
@@ -65,7 +65,7 @@ export const portfolioItems = [
     features: ["Diwali Parties" , "Holi Parties" , "Christmas Parties" , "New Year Parties" , "Thanksgiving Parties" , "Easter Parties" , "Halloween Parties"],
     category: "Holiday Parties",
     link: "#",
-    mediaUrl: "/services/holiday.jpg",
+    mediaUrl: "/services/holiday.webp",
     mediaType: "image"
   },
   {

@@ -149,6 +149,8 @@ const TribehouseDetail = () => {
         <TextBlock
           title="Visual gallery"
           body="Browse highlights from past shoots and campaigns to get a feel for our visual style and storytelling."
+          marginBottom="mb-4"
+          className="max-w-3xl mx-auto"
         />
 
         {/* Desktop Grid Container - Hidden on mobile */}

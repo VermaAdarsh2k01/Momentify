@@ -362,14 +362,14 @@ const Navbar = () => {
                 <p>Subroutine</p>
               </div>
               <div className="menu-sub-links">
-                <Link href="/#gallery" onClick={handleLinkClick}>
-                  Gallery
+                <Link href="/services#other-services" onClick={handleLinkClick}>
+                  Other Services
                 </Link>
                 <Link href="/#testimonials" onClick={handleLinkClick}>
                   Testimonials
                 </Link>
-                <Link href="/#our-values" onClick={handleLinkClick}>
-                  Our Values
+                <Link href="/#packages" onClick={handleLinkClick}>
+                  Packages
                 </Link>
               </div>
             </div>
@@ -407,7 +407,7 @@ const Navbar = () => {
           </div>
           <div className="menu-social">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/invites/contact/?i=uctp105vmxm1&utm_content=112tvhri"
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleLinkClick}

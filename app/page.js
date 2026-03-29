@@ -22,33 +22,24 @@ import ServiceFlipGrid from "./Components/ServiceFlipGrid/ServiceFlipGrid.jsx";
 import ExpandableServicesSection from "./Components/ExpandableServicesSection/ExpandableServicesSection.jsx";
 import NewAbout from "./Components/AboutSection/NewAbout.jsx";
 import PricingCards from "./Components/PricingCards/PricingCards.jsx";
+import NewHero from "./sections/newHero.jsx";
+import About from "./sections/About.jsx";
+import ServicesSection from "./sections/ServicesSection.jsx";
+import PackagesSection from "./sections/PackagesSection.jsx";
+import TestimonialsSection from "./sections/TestimonialsSection.jsx";
+import ContactFAQ from "./contact/(components)/ContactFAQ.jsx";
 
 export default function Home() {
   return (
     <div className="">
-      <Preloader />
-      <ScrollHero />
-      {/* OUTRO */}
-      {/* <NewAbout /> */}
-      {/* <Hero />
-      <TrailContainer /> */}
-      {/* <Minimap/> */}
-      {/* <ImageReveal /> */}
-      <ProjectsSection />
-      <ServiceFlipGrid />
-      {/* <StickyCards /> */}
-      <Gallery />
-      <PricingCards />
-      {/* <AboutSection /> */}
-      {/* <Showcase/> */}
-      {/* <MarqueeBanner /> */}
-      {/* <OurProcess /> */}
+      {/* <Preloader /> */}
+      <NewHero />
+      <About />
+      <ServicesSection />
+      <PackagesSection />
+      <TestimonialsSection />
       <WhyChooseUs />
-      {/* <Testimonials /> */}
-      {/* <CTABanner /> */}
-      {/* <FAQ /> */}
-      {/* <ContactSectionNew /> */}
-      {/* <ContactSection /> */}
+      <ContactFAQ />
     </div>
   );
 }
