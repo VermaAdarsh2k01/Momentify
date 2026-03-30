@@ -89,6 +89,8 @@ const NewHero = () => {
               <div className="flex flex-col gap-4 mt-6">
                 <div className="flex items-center gap-3">
                   <Phone size={16} className="text-black shrink-0" />
+                  <span className="font-body text-sm text-black">303 995 1927</span>
+                  <span className="text-black/30">|</span>
                   <span className="font-body text-sm text-black">303 419 1999</span>
                 </div>
                 <div className="flex items-center gap-3">
